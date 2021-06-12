@@ -1,0 +1,26 @@
+.heading{
+    background-color:skyblue;
+}
+body{
+    background-image:linear-gradient(white,rgb(209, 209, 255));}
+
+.bottomnav{
+   
+    background-color:white;
+    margin-top: 0px,25px;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+   }
+
+  a{
+      padding-left: 15px;
+    text-decoration:none;
+    color:black;
+  }
+  a:hover{
+      background-color: cornflowerblue;
+  }
+  a:active{background-color: cyan;}
+   
+
