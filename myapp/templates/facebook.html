@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{% static 'css/facebook.css' %}"> 
 </head>
 <body>
-    <div class="container-fluid"><!--creating header container-->
+    <div class="container-fluid "><!--creating header container-->
         <div class="row heading">
-                <div class=" col-lg-6 col-md-12">
+            <div class=" col-lg-6 col-md-12">
                <img src="{% static 'Images/fblogo.png' %}" style="height:60px;" class="img-responsive"></div>
 
-                <div class=" col-lg-6 col-md-12">
+                <div class="col-lg-6 col-md-12" id="toplogin">
                     <form action="" class="form-inline">
 
                         <div class="form-group  col-lg-4 col-md-12">
@@ -26,17 +26,17 @@
                             <label for="pswrd">Password</label>
                             <input type="password" placeholder="password" name="pswrd" id="pswrd" class="form-control">
                             Forgotten password?
-                        </div>
+                            </div>
                         <div class="col-lg-2 col-md-12">
                             <button type="submit" class="btn btn-info btn-block" style="margin-top:4px;">Login</button>
                         </div>
                     </form>
-                </div>
+            </div>
         </div>
     </div><!--end header container-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-6 d-none d-lg-block d-xl-block">
                 <h5 style="padding-left: 100px;">Facebook helps you connect and share with the people in your life.</h5><br>
                 <img src="{%static 'Images/loginfb.png' %}" width="450px" height="200px" style="padding-left: 100px;">
             </div>

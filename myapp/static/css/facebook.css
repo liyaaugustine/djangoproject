@@ -14,5 +14,10 @@ body{
       color: red;
   }
   
-   
+ @media (max-width: 1199px)  {
+    #toplogin  {
+      background: #ffffff;
+      color:  #808080;
+    }
+     }  
 
