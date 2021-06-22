@@ -3,7 +3,7 @@
     font-size: 60px;
     }
     .imground{
-        background-image: linear-gradient(red, white);
+        background-image: linear-gradient(rgb(241, 135, 135), white);
         }
 .discover{
     border:solid;
@@ -13,15 +13,20 @@
     width: 230px;
     height: 80px;
     font-size: 25px;
-    box-shadow: 10px 10px 12px red;
+    box-shadow: 10px 10px 12px blue;
     float: right;
     margin-top: 152px;
    padding: 10px;
 }
 .students{
         padding: 40px; 
-        background-image: linear-gradient(white, green);
+        background-image: linear-gradient( white,rgb(241, 135, 135));
         height: 250px;
 } 
+.para{
+    font-size:20px;
+    word-spacing: 8px;
+    background-image: url("Images/yelow.jpg");
+}
 
   
