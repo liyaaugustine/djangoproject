@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcomepage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+<style>
+    body{
+        background-image: linear-gradient(rgb(123, 248, 123),white);
+    }
+</style>
+</head>
+<body>
+    
+    {% include 'index.html' %}
+   
+      {%block content%}
+      <h2 style="color: brown; text-align: center;"> JOURNEY TO EXCELLENCE</h2>
+      <div class="container-fluid">
+          <div class="row">
+              <div style="width:320px; margin: 10px;">
+                <img src="{% static 'Images/degree.jpg' %}" width="300px" height="300px">
+            </div>
+              <div  style="width:320px; margin:10px;">
+                <img src="{% static 'Images/stthomas.jpg' %}" width="300px" height="300px">
+            </div>
+              <div  style="width:320px ;margin:10px;">
+                <img src="{% static 'Images/branchflwr.jpg' %}" width="300px" height="300px">
+              </div>
+              <div  style="width:320px ;margin:10px;">
+                <img src="{% static 'Images/group.jpg' %}" width="300px" height="300px">
+              </div>
+              <div  style="width:320px ;margin:10px;">
+                <img src="{% static 'Images/college.jpg' %}" width="300px" height="300px">
+              </div>
+              <div  style="width:320px; margin:10px;">
+                <img src="{% static 'Images/cmpter.jpg' %}" width="300px" height="300px">
+              </div>
+              <div  style="width:320px; margin:10px;">
+                <img src="{% static 'Images/college.jpg' %}" width="300px" height="300px">
+              </div>
+              <div  style="width:320px; margin:10px;">
+                <img src="{% static 'Images/colgflwr.jpg' %}" width="300px" height="300px">
+              </div>
+          </div>
+      </div>
+      {% endblock %}
+      </body>
+      </html>

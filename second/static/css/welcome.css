@@ -1,0 +1,27 @@
+.heading{
+    background-image: linear-gradient( white, red);
+    font-size: 60px;
+    }
+    .imground{
+        background-image: linear-gradient(red, white);
+        }
+.discover{
+    border:solid;
+    background-color:white;
+    color: rgb(199, 35, 172);
+    border-radius: 22px;
+    width: 230px;
+    height: 80px;
+    font-size: 25px;
+    box-shadow: 10px 10px 12px red;
+    float: right;
+    margin-top: 152px;
+   padding: 10px;
+}
+.students{
+        padding: 40px; 
+        background-image: linear-gradient(white, green);
+        height: 250px;
+} 
+
+  

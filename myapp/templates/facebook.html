@@ -36,42 +36,48 @@
     </div><!--end header container-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 d-none d-lg-block d-xl-block">
+          
+            <div class="col-lg-6 col-md-12 d-none d-lg-block d-xl-block">
                 <h5 style="padding-left: 100px;">Facebook helps you connect and share with the people in your life.</h5><br>
                 <img src="{%static 'Images/loginfb.png' %}" width="450px" height="200px" style="padding-left: 100px;">
             </div>
 
+   
         <div class="col-lg-6 col-md-12" style="padding-top: 15px;"><!--creating account-->
+          
                <center><h2>Create Account</h2><small>its free and always will be</small></center>
            
                 <form class="form-inline">
+                   
                     <div class="form-group col-lg-6 col-md-12">
                         <input type="text "placeholder="Firstname" class="form-control" style= "width:100%" required></div>
-                    <br><div class="form-group col-lg-6 col-md-12">
-                        <input type="text" placeholder="Lastname" class="form-control" style="width:100%"></div> 
+                    <div class="form-group col-lg-6 col-md-12">
+                        <input type="text" placeholder="Lastname" class="form-control" style="width:100%"></div> <br>
                     <br><div class="form-group col-lg-12 col-md-12">
-                        <input type="text "placeholder="Mobile Number" class="form-control" style="width:100%"></div><br>
+                        <input type="text "placeholder="Mobile Number" class="form-control" style="width:100%"></div>
                     <br><div class="form-group col-lg-12 col-md-12">
-                        <input type="text "placeholder="Email" class="form-control" style="width:100%"></div>
+                        <input type="text "placeholder="Email" class="form-control" style="width:100%"></div><br>
                     <br><div class="form-group col-lg-12 col-md-12">
                         <input type="password" placeholder="Password" class="form-control" style="width:100%" required></div>
 
-                        <br><br><h5 style="margin-left: 15px;"> Birthday</h5>
+                        <br><h5 style="margin-left: 15px;"> Birthday</h5><br>
 
-                    <br><div class="form-group col-lg-12 col-md-12">
+                    <div class="form-group col-lg-12 col-md-12">
                         <input type="date" class="form-control">Why do I need to provide my date of birth?
-                    </div><br>
-                    <br><div class="form-group col-lg-6 col-md-12">
+                    </div>
+                    <div class="form-group col-lg-6 col-md-12">
                         <input type="radio" name="gender">Female
                         <input type="radio" name="gender">Male
                     </div>
+                </form>
+               
                     <p style="margin-left: 15px;"> By clicking Create an account you agree to Terms and confirm that you have read our Data policy,
                         including our cookie use policy.You may recieve SMS message notification from facebook and you
                         can opt out at any time.</p>
                     </p>
                     <button type="submit" class="btn btn-success" style="margin-left: 15px;">Create an account</button>
-                </form>
-          </div>
+                
+          </div></div>
     </div><br><!--end container fluid-->
 
 <div class="container-fluid" style="background-color: white;"><!--creating footer nav-->
