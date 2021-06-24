@@ -10,3 +10,5 @@ def first(request):
     return render(request,'first.html')
 def facebook(request):
     return render(request,'facebook.html')
+def calculater(request):
+    return render(request,'mycalculater.html')

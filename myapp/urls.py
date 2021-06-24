@@ -5,5 +5,6 @@ urlpatterns = [
     path('',views.index),
     path('home', views.home),
     path('first',views.first, name='first'),
-    path('facebook',views.facebook, name='facebook')
+    path('facebook',views.facebook, name='facebook'),
+    path('calculater',views.calculater, name='calculater')
 ]
