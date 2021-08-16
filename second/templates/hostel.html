@@ -1,0 +1,61 @@
+{% extends 'index.html'%}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+.pic{
+    background-image: url("{% static 'Images/hstel1.jpg' %}");  
+    height:400px;
+}
+.text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: 400px;
+}
+.hostel{
+    color: red;
+    font-size:100px;
+    text-align: center;
+}
+body{
+    background-image: linear-gradient(white,skyblue);
+}
+p{
+    font-size: 20px;
+    text-align: 50px;
+    word-spacing: 10px;
+}
+</style>
+</head>
+<body>
+    
+
+    <div class="pic">
+        <h1 class="hostel text"><i>Hostel</i></h1>
+    </div>
+    <h2 class="m-5">Description</h2>
+    <p class="ml-5">ST.THOMAS provides with the facility of Hostels for both Boys and Girls. 
+        Boys hostel is run by the managemant and girls hostels are run by Rev. Sisters.</p>
+          
+        <h3 class="m-5">Hostel For Boys</h3>
+        <p class="ml-5">
+            St. Thomas Hostel for boys Run by  Fathers
+        </p>
+        <h4 class="ml-5">8056243978</h4>
+        <h3 class="m-5">Hostel For Girls</h3>
+        <p class="ml-5">
+            Run by the  sisters. It is Attached with the  convent, Thamaressery.
+        </p>
+        <h4 class="ml-5">9956283718</h4>
+    {% endblock %}  
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'CSindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSC CS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+body{
+    background-image:url("{% static 'Images/cs5.jpg' %}");
+}
+p{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-indent: 15px;
+}
+b{
+    font-size: 60px;
+    color: red;
+    text-shadow: 2px 2px yellowgreen;
+    border-top:20px solid skyblue;
+    border-right: 5px solid skyblue ;
+    border-left:5px solid skyblue ;
+    border-bottom:20px solid skyblue;
+    border-radius: 40px;
+  
+ 
+}
+</style>
+</head>
+<body>  
+   
+   
+   
+
+    <div class="container-fluid">
+       
+            <div class="col-lg-12 col-md-8 col-sm-8">
+                <div style="text-align: center;" class="m-5">
+                <b>BSC . COMPUTER SCIENCE</b>
+                </div>
+            </div>
+    </div>
+    <p class="m-5">
+        St.Thomas offers Bachelor’s Degree in Computer Science(B.Sc CS)programme that equips the candidates with the 
+        basic knowledge and understanding of the concepts of computer science, information technology and its related
+         branches. The programme prepares the candidates to seek knowledge in the field of technology. This is a 
+         three-year full-time undergraduate programme. The program is divided into six semesters. Each semester lasts 
+         for a period of 6 months .</p>
+         <p class="m-5">There is a wide range of employment opportunities available for graduates in Computer Science, such as in:
+    </p>
+    <ul style="font-size:20px; list-style: square;">
+        <li>
+            Computer hardware system companies
+        </li>
+        <li>
+            Computer networking companies
+        </li>
+        <li>
+            Design and development companies
+        </li>
+        <li>
+            Government as well as Private IT, engineering and academic institutes
+        </li>
+        <li>
+            Multi-national companies
+        </li>
+        <li>
+            Software development companies
+        </li>
+    </ul> <br>
+    {% endblock %}
+</body>
+</html>

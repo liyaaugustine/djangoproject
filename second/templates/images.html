@@ -1,3 +1,5 @@
+{% extends 'index.html'%}
+{%block content%}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,15 +13,13 @@
     <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
 <style>
     body{
-        background-image: linear-gradient(white,rgb(235, 104, 104));
+        background-image: linear-gradient(white,skyblue);
     }
 </style>
 </head>
 <body>
     
-    {% include 'index.html' %}
-   
-      {%block content%}
+    
       <h2 style="color: brown; text-align: center;"> JOURNEY TO EXCELLENCE</h2>
       <div class="container-fluid">
           <div class="row">
@@ -42,7 +42,7 @@
                 <img src="{% static 'Images/cmpter.jpg' %}" width="300px" height="300px">
               </div>
               <div  style="width:320px; margin:10px;">
-                <img src="{% static 'Images/college.jpg' %}" width="300px" height="300px">
+                <img src="{% static 'Images/green.jpg' %}" width="300px" height="300px">
               </div>
               <div  style="width:320px; margin:10px;">
                 <img src="{% static 'Images/colgflwr.jpg' %}" width="300px" height="300px">

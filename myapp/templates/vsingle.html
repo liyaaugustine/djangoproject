@@ -1,0 +1,81 @@
+{%extends 'master.html'%}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+
+    <table class="table table-striped">
+        <center><h1>Details</h1></center>
+            <tr>
+               <th>Name</th>
+            <td>{{profile.firstname}} {{profile.lastname}}</td>
+            </tr>
+            <tr>
+               <th>Date</th>
+            <td>{{profile.date}}</td>
+            </tr>
+            <tr>
+                <th>Place</th>
+            <td>{{profile.place}}</td>
+            </tr>
+            <tr>
+               <th>Parentname</th>
+            <td>{{profile.parentname}}</td>
+            </tr>
+            <tr>
+                <th>Mobile number</th>
+             <td>{{profile.phone}}</td>
+             </tr>     
+        </table>
+
+        <div class="mx-auto" id="updt" style="width: 500px;">
+            
+                <h4>Edit Details
+                <button type="button" class="close">
+                    <span>&times;</span></h4>
+                </button>
+            
+                <form method="POST" action="{{profile.id}}">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="fname">Firstname</label>
+                        <input type="text" id="fname" name="fname" class="form-control" value="{{profile.firstname}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Lastname</label>
+                        <input type="text" id="lname" name="lname" class="form-control"value={{profile.lastname}}>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" class="form-control"value={{profile.date}} placeholder="{{profile.date}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="place">Place</label>
+                        <input type="text" id="place" name="place" class="form-control"value={{profile.place}}>
+                    </div>
+                    <div class="form-group">
+                        <label for="pname">Parentname</label>
+                        <input type="text" id="pname" name="pname" class="form-control"value={{profile.parentname}}>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Mobile Number</label>
+                        <input type="text" id="phone" name="phone" class="form-control"value={{profile.phone}}>
+                    </div>
+                    <div>
+                        <button type="button"  class="btn btn-info">Close</button>
+                        <button type="submit" class="btn btn-secondary ml-5">Save Changes</button>
+                    </div>   
+                </form>
+        </div>
+        {% endblock %}  
+</body>
+</html>

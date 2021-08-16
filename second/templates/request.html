@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name:</th>
+                <th>Click Below</th>
+            </tr>
+        </thead>
+            <tbody>
+                {% for itm in reqcheching %}<!--errer -->
+                <tr>
+                    <td>{{itm.candidatename}} {{itm.parentname}}</td>
+                    <td><a href="details">View Details</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+</body>
+</html>

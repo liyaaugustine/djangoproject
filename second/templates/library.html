@@ -1,0 +1,83 @@
+{% extends 'index.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+.pic{
+    background-image: url("{% static 'Images/lib1.jpg' %}");  
+    height:300px;
+   
+}
+.library{
+    color: red;
+    font-size:100px;
+    text-align: center;
+}
+.text{
+ background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: 300px;
+}
+p{
+    font-size: 20px;
+    text-align: 50px;
+    word-spacing: 10px;
+}
+body{
+    background-image: linear-gradient(white,skyblue);
+}
+    </style>
+</head>
+<body>
+    
+
+    <div class="pic">
+        <h1 class="library text"><i>Library</i></h1>
+    </div>
+    <h2 class="m-5">Description</h2>
+        <p class="m-5">The Institute has a well equipped and spacious library. 
+            Almost all latest books on social work, psychology, literature, journalism, 
+            visual media and its related subjects are available in the library. 
+            Local and national dailies, periodicals, journals, magazines etc. 
+            are placed in the library for reading and reference. Above all, the students are 
+            motivated to make use of the library facilities to the maximum under the constant 
+            care of a well experienced librarian.</p>
+
+    <h3 class="m-5">Timing</h3>
+            <p class="m-5">The library is open from 9. am to 5 pm in all working days including saturdays</p>
+    <h3 class="m-5">General Rules</h3>
+   
+       <ul style="font-size:20px;" class="m-5">
+        <li>
+            College Identity Card e sissued should be produced at the counter before entering the library.
+        </li>
+        <li>
+            Students are not permitted to enter the library with their Personal articles such as books, bags, umbrella, files etc. 
+        </li>
+        <li>
+            Strict silence should be maintained in the library and its premise
+        </li>
+    </ul>
+    <h3 class="m-5">Other Guidelines </h3>
+    <p class="m-5">Students are advised to use library during free hours.</p>
+    <p class="m-5">Students can borrow books from the library on producing the Borrower-Card/Readers’
+         Ticket issued to them by the librarian. 
+            The Borrower- Card /Readers’ Ticket is not transferable.</p>
+    <p class="m-5">The students are expected to use the books with utmost care. 
+        The borrower will be held responsible for any defect detected when the 
+        book is returned and he/ she will be required to replace 
+        defective book either with a new one or pay the compensation fixed by the librarian.</p>
+       <p class="m-5">Students should enter the names and details in the prescribed register before entering the library.</p> 
+
+      {% endblock %}  
+</body>
+</html>

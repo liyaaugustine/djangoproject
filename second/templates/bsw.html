@@ -1,0 +1,55 @@
+{% extends 'SWindex.html' %}
+ {%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSW</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+    <style>
+        body{
+            background-image: url("{% static 'Images/green.jpg' %}");
+            background-repeat: no-repeat;
+           
+        }
+        .msw{
+            text-align: center;
+            color: red;
+            border: solid 10px skyblue;
+            border-radius: 25px;
+            font-size: 55px;
+            width:500px;
+            margin:auto;
+        }
+        p{
+            word-spacing: 15px;
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container-fluid">
+        <div class="row">
+                    <b class="msw">BSW</b>
+            <p class="m-5">LISSAH offers Bachelor’s Degree in Social Work (BSW) to train young men/women as
+                 professional Social Workers. The course offers basic knowledge, skills and values of social work 
+                 along with current trends like environment, community health, gender & development, family life 
+                 education etc. The course provides great opportunities for the students in organization exposure, 
+                 career identification and personality development.
+            </p>
+            <p class="m-5">
+                <b style="color: black; font-size: 45px;">Eligibility:</b> Pass in Plus two/Pre-degree/equivalent examination. 
+            </p>
+            <h2>No.of seats:40</h2>
+         </div>   
+    </div>                
+
+  {% endblock %}  
+</body>
+</html>

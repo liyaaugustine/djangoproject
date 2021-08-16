@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compuetr Science</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<style>
+    
+.mycontainer {
+    position: relative;
+   
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height:400px;
+}
+
+    .mycontainer:hover .overlay {
+  opacity:1;
+}
+
+
+.overlay {
+  position: absolute; 
+  top: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  font-size: 50px;
+  padding: 10px;
+  text-align: center;
+}
+p{
+    word-spacing: 10px;
+    font-size: 20px;
+    text-indent: 75px;
+}
+body{
+    background-image: linear-gradient(white,rgb(192, 231, 247));
+}
+</style>
+<body>
+    {% include 'CSindex.html' %}
+   
+      {%block content%}
+
+    <div class="container-fluid mycontainer">
+        <img src="{% static 'Images/cs6.jpg' %}" alt="" class="image">
+        <div class="overlay"> DEPT.COMPUTER SCIENCE</div>
+    </div>
+    <center><h1>About US</h1></center>
+    <p>BSc Computer Science (B.Sc CS) is one of the most popular programs in the IT domain. 
+        This field has the potential to propel your career. It is a consistently growing field with a 
+        large variety of job opportunities both in India and abroad as the industry and demand grows. </p>
+
+    <p>Technologies are developing rapidly and Computer Science is the core of it. There are bright career
+         prospectus for Computer Science Professionals. With opening of huge MNC companies in India, 
+         the opportunities for trained professionals have increased considerably. India is known as the 
+         leader in Software and IT sector. Software companies offer attractive packages for young graduates. </p>
+         <h3>Eligiblity:</h3>
+         <p>Higher Secondary School Certificate (10+2) in science stream or its 
+           equivalent Examination as per the University of Calicut eligibility norms.</p>
+      {% endblock %}  
+</body>
+</html>

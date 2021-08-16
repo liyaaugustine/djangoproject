@@ -1,0 +1,59 @@
+{% extends 'Pindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Msc Psychology</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        .pic{
+    background-image: url("{% static 'Images/psy6.jpg' %}");
+    height: 400px;
+    }
+    p{
+    word-spacing: 10px;
+    font-size: 20px;
+    text-indent: 75px;
+}
+.text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: 400px;
+  bottom: 0;
+}
+
+.library{
+    font-size:100px;
+    text-align: center;
+}
+body{
+    background-image: linear-gradient(white,skyblue);
+}
+    </style>
+</head>
+<body>
+    <div class="pic">
+        <h1 class="library text"><i style="color: white;">BSC PSYCHOLOGY</i></h1>
+    </div>
+            <p class="m-5">
+                BSc Psychology is an important bachelor’s programme offered by St Thomas. 
+                The course familiarizes the students with various psychological theories 
+                and prepares them to assess the current psycho-social problems to promote a 
+                healthy society. Practical experiments in psychological lab are a speciality 
+                of this course. After passing BSc psychology, students can opt for MSc Clinical 
+                Psychology, MSc Applied Psychology, MSc Counselling, MSc Sports Psychology, 
+                MSc Industrial Psychology, MSW, MBA, MHRM and similar professional courses.
+            </p>
+            <p class="m-5"><b style="font-size:35px;">Eligibility:</b>
+                 Plus Two/Pre-Degree/equivalent examination. 
+            </p>
+            <p class="m-5"><b style="font-size:25px;">No.Of Seats:60</b></p>
+    {% endblock %}  
+</body>
+</html>

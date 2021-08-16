@@ -1,0 +1,59 @@
+{% extends 'SWindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milestones</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+    <style>
+.dept{
+    font-size: 45px;
+    color:red;
+    border: solid 10px skyblue;
+    border-radius: 35px 0px;
+   padding: 15px;
+   background-color: cadetblue;
+  
+}
+body{
+        background-image:linear-gradient(white, rgb(207, 227, 235));
+    }
+    </style>
+    </head>
+
+    <body>
+        
+        <div class="container-fluid">   <!--creating slider-->
+            <div class="row">
+
+                    <div class="col-lg-4 col-md-4 mt-5">
+                        <img src="{% static 'Images/social.jpg'%}">
+                    </div>  
+                    <div class=" col-lg-4 col-md-4 mt-5">
+                        <b class="dept">Dept of Social Work</b> 
+                    </div>
+                    <div class="col-lg-4 col-md-4 mt-5">
+                        <img src="{% static 'Images/reww.jpg'%}">
+                    </div>
+                    
+                    <p style="font-size:20px;text-indent:100px; word-spacing:15px;">
+                        The Department of Social Work offers two Programmes at the graduate and postgraduate levels. 
+                        This discipline promotes the cultivation of the right kind of attitude and commitment in those who look 
+                        for careers with service content and satisfaction. Government & Non-Gov­ernment Organizations (NGOs) are 
+                        important job providers in both urban & rural areas. 
+                        This field is professional and considered noble as it strives to improve the socio-economic conditions of 
+                        people. Those who acquire necessary qualifications in this area have job opportunities in the departments of 
+                        education, health and the welfare schemes of the governments.
+                      
+                    </p>
+            </div>
+           
+        </div>      
+        {% endblock %}  
+    </body>
+    </html>

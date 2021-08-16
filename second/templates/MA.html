@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA English</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <style>
+     p{
+    word-spacing: 10px;
+    font-size: 25px;
+    text-indent: 75px;
+    
+    }
+    .library{
+    font-size:100px;
+    text-align: center;
+    color:brown;
+    }
+    .pic{
+    background-image: url("{% static 'Images/engtree.jpg' %}");  
+  
+}
+
+.text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+    </style>
+</head>
+<body>
+    {% include 'EGindex.html' %}
+   
+    {%block content%}
+    
+       <div class="pic">
+            <div class="col-lg-12 col-md-12 col-sm-12 text">
+                <div class="m-5 library">
+                    <b>MA ENGLISH</b>
+                </div>
+            </div>
+                <div class="text">
+                    <h2>No Of Seats:20</h2>
+                    <p class="m-5">
+                        St.Thomas offers Bachelor’s Degree in MA English.
+                        Studying English literature opens up a world of inspiration and creativity,
+                        while also developing skills that are essential for today's global environment.
+                        This is a three-year full-time undergraduate programme. 
+                        The program is divided into six semesters. Each semester lasts 
+                        for a period of 6 months .
+                    </p>
+                    <p class="m-5">
+                        English is the Language of International Communication. Although English is 
+                        not the most spoken language in the world, it is the official language in 53 
+                        countries and is spoken as a first language by around 400 million people worldwide.
+                         But that's not all, it is also the most common second language in the world
+                    </p>
+                    <p class="m-5">
+                        <b style="color: black; font-size: 45px;">Eligibility:</b>
+                        A Degree from any University recognized by the University of Calicut with minimum 50% aggregate 
+                        marks in Part –III Main and subsidiary and part I English. 
+                        Those candidates who have only main papers require 50% marks for main only.<br><br>
+                    </p>
+                </div>
+        </div>
+     </div>   
+
+{% endblock %}  
+</body>
+</html>

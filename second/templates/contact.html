@@ -1,3 +1,5 @@
+{% extends 'index.html'%} 
+{%block content%}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,32 +14,37 @@
 </head>
 <style>
     .address{
-     border: 1px solid grey;
+     border: 3px solid grey;
      margin: 25px;
-    background-color: rgb(235, 168, 182);
+     background: linear-gradient(rgb(0, 0, 0),rgba(0, 0, 0, 0.5));
+        /* Black see-through */
+        color: #f1f1f1; 
      height: 280px;     
-     border-radius:80px;  
+     border-radius:30%;  
      text-align: center; 
+}
+body{
+    background-image: linear-gradient( white,skyblue);
+    
 }
 </style>
 <body>
-    {% include 'index.html' %}
-
-    {%block content%}
+   
+  
     <center><h1>CONTACT US</h1></center>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 address">
-                <h2>Address:</h2><br>
+                <h2 class="m-5">Address:</h2><br>
                 <h5>St.Thomas College, Thmarassery, <br>
                     Kozhikode - 673586 Kerala, India</h5>
             </div>
             <div class="col-lg-3 address">
-                <h2>Email:</h2><br>
+                <h2 class="m-5">Email:</h2><br>
                 <h4>stthomas@gmailcom</h4>
             </div>
             <div class="col-lg-3 address">
-                <h2>Phone Number:</h2><br>  
+                <h2 class="m-5">Phone Number:</h2><br>  
                 <h5>
                     0091-495-2 232 085,2 232 164 <br>
                     Fax : 0091-495-2 233 174<br>
@@ -45,7 +52,13 @@
                     Director : +91-7026 385 135</h5>
             </div>
         </div>
-    </div>
+        <form>
+            <div class="form-group">
+                <input type="text" id="msg" placeholder="Ask your doubts" class="form-control my-5">
+                <button type="submit" class="btn btn-primary mx-5">Send message</button> 
+            </div>
+        </form>   
+    </div><br><br><br>
     {% endblock %}
 </body>
 </html>

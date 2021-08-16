@@ -1,0 +1,217 @@
+{% extends 'Pindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bsc Syllabus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        body{
+        background-image:linear-gradient(white, skyblue);
+    }
+    .msc{
+        text-align: center;
+        background-color:skyblue;
+        color:red;
+        width: 350px;
+        margin-top: 25px;
+        border: 2px solid thistle;
+        border-radius: 100px;
+    }
+    .pic{
+        background-image: url("{% static 'Images/clg7.jpg' %}");
+        background-size: cover;
+        height:450px;
+        border: 10px solid skyblue;
+        border-radius:75px ;
+    }
+    .text{
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1; 
+        width: 100%;
+        height:450px;
+        border: 10px solid;
+        border-radius: 75px;
+    }
+    </style>
+</head>
+<body>
+    <div class="pic">
+        <div class="text">
+            <center><div class="msc">
+                <h1><i>Bsc Syllabus</i></h1>
+            </div></center>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 1:</h2>
+            <ol>
+                <li>
+                    Common Course I-English
+                </li>
+                <li>
+                    Common Course II-English
+                </li>
+                <li>
+                    Common Course III-Language other than English
+                </li>
+                <li>
+                    Basic themes in Psychology-I
+                </li>
+                <li>
+                    Human Physiology
+                </li>
+                <li>
+                    Psychological Statistics
+                </li>
+            </ol>  
+        </div>  
+    </div>  
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 2:</h2>
+            <ol>
+                <li>
+                    Common Course IV-English
+                </li>
+                <li>
+                    Common Course V-English
+                </li>
+                <li>
+                    Common Course VI-Language other than English
+                </li>
+                <li>
+                    Basic themes in Psychology-II
+                </li>
+                <li>
+                    Human Physiology
+                </li>
+                <li>
+                    Psychological Statistics
+                </li>
+            </ol>  
+        </div>  
+    </div>  
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 3:</h2>
+            <ol>
+                <li>
+                    Common Course VI-English
+                </li>
+                <li>
+                    Common Course VIII-Language other than English
+                </li>
+                <li>
+                    Psychological measurement and testing
+                </li>
+                <li>
+                    Experimental Psychology Practical –I
+                </li>
+                <li>
+                    Human Physiology
+                </li>
+                <li>
+                    Psychological Statistics
+                </li>
+            </ol>  
+        </div>  
+    </div>  
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 4:</h2>
+            <ol>
+                <li>
+                    Common Course IX- English
+                </li>
+                <li>
+                    Common Course X-Language other than English
+                </li>
+                <li>
+                    Individual Differences
+                </li>
+                <li>
+                    Experimental Psychology Practical –I
+                </li>
+                <li>
+                    Human Physiology
+                </li>
+                <li>
+                    Psychological Statistics
+                </li>
+            </ol>  
+        </div>  
+    </div> 
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 5:</h2>
+            <ol>
+                <li>
+                    Abnormal Psychology-I
+                </li>
+                <li>
+                    Social Psychology
+                </li>
+                <li>
+                    Developmental Psychology -I
+                </li>
+                <li>
+                    Psychological Counseling
+                </li>
+                <li>
+                    Health Psychology
+                </li>
+                <li>
+                    Open Course
+                </li>
+                <li>
+                    Experimental Psychology Practical- II
+                </li>
+                <li>
+                    Project
+                </li>
+            </ol>  
+        </div>  
+    </div>
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 6:</h2>
+            <ol>
+                <li>
+                    Abnormal Psychology II
+                </li>
+                <li>
+                    Applied Social Psychology
+                </li>
+                <li>
+                    Developmental Psychology II
+                </li>
+                <li>
+                    Life Skill Education: Applications and training
+                </li>
+                <li>
+                    Elective
+                </li>
+                <li>
+                    Experimental Psychology Practical – II
+                </li>
+                <li>
+                    Experimental Psychology Practical- III
+                </li>
+                <li>
+                    Project
+                </li>
+            </ol>  
+        </div>  
+    </div>
+
+    {% endblock %}  
+</body>
+</html>

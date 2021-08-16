@@ -1,0 +1,67 @@
+{% extends 'EGindex.html'%}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+<style>
+.pic{
+    background-image: url("{% static 'Images/eng4.jpg' %}");  
+
+}
+p{
+    word-spacing: 10px;
+    font-size: 20px;
+    text-indent: 75px;
+    color: white;
+}
+.text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: auto;
+  bottom: 0;
+}
+.library{
+    font-size:100px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+     
+
+    <div class="pic ">
+            <h1 class="library"><i>DEPT. OF ENGLISH</i></h1>
+        <div class="text col-lg-12 col-md-12 col-sm-8">
+            <h1 style="text-align: center;">Welcome To English Department</h1>
+            <p class="m-5">
+                Studying English literature opens up a world of inspiration and creativity,
+                 while also developing skills that are essential for today's global environment.
+                  It is a chance to discover how literature makes sense of the world through 
+                  stories, poems, novels and plays.
+            </p>
+            <p class="m-5">
+                A bachelor's degree program in English language offers several course specializations,
+                 such as literature, linguistics, education, and creative writing. Graduates of these
+                  programs may go on to pursue master's or doctoral degrees, or find careers in fields
+                   like writing, teaching, and journalism.
+            </p>
+            <p>
+                Knowing English increases your chances of getting a good job in a multinational company
+                 within your home country or for finding work abroad. It's also the language of international
+                  communication, the media and the internet, 
+                so learning English is important for socialising and entertainment as well as work!<br><br>
+            </p>
+        </div>
+    </div>
+     {% endblock %}  
+</body>
+</html>

@@ -1,0 +1,100 @@
+{% extends 'index.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievments</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+
+<style>
+    body{
+        background-image: linear-gradient( skyblue,white);
+    }
+    .pic{
+    background-image: url("{% static 'Images/books.jpg' %}");  
+    height:450px;
+   background-repeat: no-repeat;
+    border-radius:100px;
+    border: solid 20px;
+    border-color: skyblue;
+    margin-right: 10px;
+}
+.achieve{   
+    border-radius:30px;
+    color: white;
+    background-color: skyblue;
+    height: 80px;
+    width: 300px;
+    text-align: center;
+  
+}
+
+
+    .mycard{
+        border: solid 20px skyblue;
+        border-radius:40px;
+        height: 450px;
+    }
+</style>
+</head>
+<body>
+   
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-7 d-none d-md-block d-lg-block d-xl-block"> <!--achevement image section-->
+                <div class="pic ml-5 mt-5">
+                    <div class="achieve ml-5 mt-5">
+                        <h1><i>Achievments</i></h1>
+                    </div>
+                </div>
+            </div> <!-- end of achevement image section-->
+           
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <b style="text-align: center; font-size:35px;">OUR MOTO:</b><br>
+                <b style="text-shadow:2px 2px white; color:rgb(255, 60, 0);margin-left:105px; font-size:45px;">
+                    A JOURNEY TO 
+                        <center>EXCELLENCE</center></b>
+             </div> 
+        </div>
+    </div>
+
+    <div class="container-fluid"> <!--creating card images-->
+        <div class="row" style="margin-top: 10px;">
+             <div class="col-lg-4 col-md-4 col-sm-6">
+                 <div class="card mycard">
+                        <img src="{% static 'Images/pic5.jpg'%}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5>Green Campus Award</h5>
+                        <p> St.Thomas College has honored with a certificate for Green Campus for 
+                            maintaining the greenery and protecting the environment</p>
+                    </div>
+                   </div>
+             </div>  
+             <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card mycard">
+                <img src="{% static 'Images/group.jpg'%}" alt="" class="card-img-top">
+                <div class="card-body">
+                <h5>Best Socially Commited College</h5>
+                <p> St.Thomas was selected as the Best Socially Committed college in the Project "Campuses of Kozhikode"</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="card mycard">
+                <img src="{% static 'Images/award.png'%}" alt="" class="card-img-top">
+                <div class="card-body">
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!--end of card images-->
+    {% endblock %}
+</body>
+</html>

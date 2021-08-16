@@ -1,0 +1,101 @@
+{% extends 'Pindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychology</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+.pic{
+        background-image: url("{% static 'Images/psy1.jpg' %}");  
+        height:400px;
+    }
+    .text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: 400px;
+  bottom: 0;
+}
+.psycho{
+    font-size: 50px;
+    border: 3px solid skyblue;
+    border-radius: 45px;
+    width: 700px;
+    background:rgb(250, 250,250);
+    background: rgba(0.5, 0.5, 0.5, 0.5);
+}
+p{
+    word-spacing: 10px;
+    font-size: 20px;
+}
+.psycho:hover{
+    background-color:white;
+    color: black;
+}
+body{
+    background-image: linear-gradient(white,skyblue);
+}
+.welcome{
+    width:700px;
+    background-color: cornflowerblue;
+    border: 2px solid skyblue;
+    border-radius: 25px 25px 0px 0px;
+}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="pic">
+                <div class="text col-lg-12 col-md-12 col-sm-8" style="text-align: center;">
+                   <center>
+                       <div class="psycho" id="show">
+                            <i>DEPT OF PSYCHOLOGY</i>
+                        </div>
+                    
+                    <div class="welcome m-5" id="wel">
+                        <h1>Welcome To Psychology Department</h1>
+                    </div>
+                </center>
+                </div>   
+        </div>
+    </div>
+
+    <p class="m-5">
+        The department of Psychology were started in 2005 with B. Sc. Psychology course 20 students
+        and 3 teachers. Dr. jacob Menon were the first Head of the Department of Psychology.
+        In 2015 ST THOMAS launched M. Sc. Psychology course with 10 students.</p>
+
+        <p class="m-5">Now we've traveled far from the simple setting to one of the biggest Psychology department in Kerala.
+        Now we have two batches in B. Sc. Psychology degree course. Each batch contains approximately 44 seats,
+        so a total of 88 numbers of students in the latest batch. The PG (M. Sc. Psychology course is also elaborated 
+        with 21 seats from 12 in the beginning. Currently 8+ teachers and Outside resource people moulding the students with value. 
+        It include well experienced professors, psychologists, clinical experts and therapists, HR experts etc.
+    </p>
+    <p class="m-5">
+        The Department of Psychology also provides certificate courses, space for overall personality and skill 
+        development specially designed curricular and co-curricular activities for overall student development 
+        with competence to deal with in a world class level.
+    </p>
+    <p class="m-5">
+        We have a lot of students placed in higher level positions abroad and within the country.
+        For appointment :<b>+91 9188226490</b> 
+    </p>
+    <script>
+        $(document).ready(function(){
+            $('#show').click(function(){
+                $('#wel').fadeToggle(2000)
+            })
+        });
+    </script>
+
+    {% endblock %}  
+</body>
+</html>

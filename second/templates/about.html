@@ -9,42 +9,106 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
+<style>
+    
+    .pic{
+    background-image: url("{% static 'Images/eng9.jpg' %}");  
+    background-size: cover;
+}
+.text{
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 100%;
+  height: auto;
+  
+}
+.moto{
+    border:25px solid skyblue;
+    border-radius: 45px;
+    background:rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+}
+.day{
+        font-size:35px;
+        color: hotpink;
+        background:rgb(0, 0, 0); 
+        border: 5px solid skyblue;
+        width: 400px;
+        border-radius: 45px;
+        text-align: center;
+}
 
+</style>
 </head>
 <body>
     
     {% include 'index.html' %}
    
       {%block content%}
-
-   <h2 style="color: brown; text-align: center;">
-    SOMETHING ABOUT US</h2>   
-    <div class="para">
-    <p> St Thomas is a premier education institution under the management of  St.Thomas Province of the CST Fathers.
-       The campus has a unique culture of freedom and academic moulding.
-    </p>
-       <p>St Thomas is established in 2005 and is located at Thmarassery. The college provides an excellent ambience for education, 
-           training and research in Social Work, Mental Health, Mental Health (Psychology) and other behavior sciences. 
-         St.Thpomas offers Bachelor Degrees in Social Work (BSW), BSc Psychology, BA English with Journalism and Audio Visual Communication, 
-         BSc Computer Science.and Masters Degree in Social Work (MSW), MSc Psychology, MCom Finance, MAJMC(Journalism) and MA English.
-        </p>
-        <p>The key strength of St Thomas is the integration of teaching, research, consultancy and field work in order to ensure 
-            the best possible learning environment for staff and students alike. St.Thomas always tries its best to redesign the 
-            life of the people around it and to improve the quality of their life. St.Thomas  offers short-term training courses for 
-            employees of government and voluntary organizations. It also undertakes field action projects, in the field of 
-            community development and community health in collaboration with Health Dialogue Kozhikode, a registered 
-            charitable society, which is the field lab of the  St.Thomas . Further more, it provides professional expertise
-            in training field action projects, research and policy analysis. We also offer various IT and management courses.
-        </p></div>
-        <div class="container-fluid">
-            <div class="row">
-                <div col-lg-6 col-md-6 col-sm-12>
-                   <h2 style="color: red; text-align: center;">OUR MOTO:</h2><br>
-                   <h1 style="text-shadow:2px 2px 5px brown; color:rgb(255, 60, 0);margin-left:105px;">
-                        A JOURNEY TO EXCELLENCE</h1>
+    <div class="pic">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 moto mx-auto">
+                    <h2 style="color:white; text-align: center;">OUR MOTO:</h2><br>
+                    <h1 style="text-shadow:2px 2px white; color:rgb(255, 60, 0);margin-left:105px;">
+                            A JOURNEY TO EXCELLENCE</h1>
+                    </div>
                 </div>
             </div>
+        <h2 style="color: brown; text-align: center;">
+                SOMETHING ABOUT US
+        </h2>   
+    
+        <div class="para text">
+
+            <p class="m-5"> St Thomas is a premier education institution under the management of  St.Thomas Province of the CST Fathers.
+                The campus has a unique culture of freedom and academic moulding.
+            </p>
+            <p class="m-5">St Thomas is established in 2005 and is located at Thmarassery. The college provides an excellent ambience for education, 
+                training and research in Social Work, Mental Health, Mental Health (Psychology) and other behavior sciences. 
+                St.Thpomas offers Bachelor Degrees in Social Work (BSW), BSc Psychology, BA English with Journalism and Audio Visual Communication, 
+                BSc Computer Science.and Masters Degree in Social Work (MSW), MSc Psychology, MCom Finance, MAJMC(Journalism) and MA English.
+            </p>
+            <p class="m-5">The key strength of St Thomas is the integration of teaching, research, consultancy and field work in order to ensure 
+                the best possible learning environment for staff and students alike. St.Thomas always tries its best to redesign the 
+                life of the people around it and to improve the quality of their life. St.Thomas  offers short-term training courses for 
+                employees of government and voluntary organizations. It also undertakes field action projects, in the field of 
+                community development and community health in collaboration with Health Dialogue Kozhikode, a registered 
+                charitable society, which is the field lab of the  St.Thomas . Further more, it provides professional expertise
+                in training field action projects, research and policy analysis. We also offer various IT and management courses.
+            </p>
         </div>
+    </div>
+        <h1>Upcoming Events............................!!!!!!!!!</h1>
+            <h2>AUGUST</h2> 
+        <div class="row">    
+                <div class="day col-lg-3 col-md-5 col-sm-8 m-5">
+                    1 sunday <br> 
+                    <i style="color: tomato;">friendship day</i>
+                </div>
+                <div class="day  col-lg-3 col-md-5 col-sm-8 m-5">
+                    6 friday <br> 
+                    <i style="color: tomato;">Hiroshima Day</i>
+                </div>  
+                <div class="day  col-lg-3 col-md-5 col-sm-8 m-5">
+                    21 sunday <br> 
+                    <i style="color: tomato;">Independence Day</i>
+                </div>
+                
+                <div class="day  col-lg-3 col-md-5 col-sm-8 m-5">
+                    21 saturday<br>
+                    <i style="color: tomato;">Thiruvonam</i>
+                </div>
+                <div class="day col-lg-3 col-md-5 col-sm-8 m-5">
+                    <br>
+                    <i style="color: tomato;"></i>
+                </div>
+                <div class="day  col-lg-3 col-md-5 col-sm-8 m-5">
+                    <br>
+                    <i style="color: tomato;"></i>
+                </div>
+        </div>       
         {% endblock %}
 </body> 
 </html>

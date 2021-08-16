@@ -1,0 +1,181 @@
+{% extends 'Pindex.html' %}
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bsc Syllabus</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        body{
+        background-image:linear-gradient(white, skyblue);
+    }
+    .pic{
+        background-image: url("{% static 'Images/clg6.jpg' %}");
+        height:450px;
+        border: 10px solid skyblue;
+        border-radius:75px ;
+    }
+    .text{
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through */
+        color: #f1f1f1; 
+        width: 100%;
+        height:450px;
+        border: 10px solid;
+        border-radius: 75px;
+    }
+    .msc{
+        text-align: center;
+        background-color:skyblue;
+        color:red;
+        width: 350px;
+        margin-top: 25px;
+        border: 2px solid thistle;
+        border-radius: 100px;
+    }
+
+    
+    </style>
+</head>
+<body>
+    <div class="pic">
+        <div class="text">
+            <center><div class="msc">
+                <h1><i>Msc Syllabus</i></h1>
+            </div></center>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 1:</h2>
+            <ol>
+                <li>
+                    Cognitive Psychology I
+                </li>
+                <li>
+                    Research Methodology
+                </li>
+                <li>
+                    Personality and Personal Growth
+                </li>
+                <li>
+                    Physiological Psychology
+                </li>
+                <li>
+                    Practical I(Psychological Testing and Assessment)
+                </li>
+                <li>
+                    Community Extension Work
+                </li>
+            </ol>  
+        </div>  
+    </div>  
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 2:</h2>
+            <ol>
+                <li>
+                    Psychopathology
+                </li>
+                <li>
+                    Counselling Psychology
+                </li>
+                <li>
+                    Cognitive Psychology II
+                </li>
+                <li>
+                    Applied Psychology
+                </li>
+                <li>
+                    Practical 2 (Field Work & Journal Report)
+                </li>
+                <li>
+                    Life Skill Training
+                </li>
+            </ol>  
+        </div>  
+    </div>
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 3:</h2>
+            <ol>
+                <li>
+                    Advanced Social Psychology
+                </li>
+                <li>
+                    Organizational Behaviour
+                </li>
+                <li>
+                    Practical 3 ( Experimental Psychology)
+                </li>
+                <li>
+                    Practicum/Internship
+                </li>
+                <li>
+                    Elective - I
+                    <ul>
+                        <li>
+                            Clinical Neuro Psychology PSY 3E I- 01
+                        </li>
+                        <li>
+                            Clinical Psychology PSY 3E I- 02
+                        </li>
+                        <li>
+                            Industrial management PSY 3E I-03
+                        </li>
+                        <li>
+                            Human Resource Development PSY 3E I- 04
+                        </li>
+                    </ul>
+                </li>
+            </ol>  
+        </div>  
+    </div>
+    <div class="container-fluid">
+        <div class="row"> 
+            <h2>Semester 4:</h2>
+            <ol>
+                <li>
+                    Current trends in Psychology
+                </li>
+                <li>
+                    Self development techniques
+                </li>
+                <li>
+                    Dissertation
+                </li>
+                <li>
+                    Viva- voce
+                </li>
+                <li>
+                    Elective II
+                    <ul>
+                        <li>
+                            Psychotherapeutics- I 
+                        </li>
+                        <li>
+                            Consumer/ Marketing 
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Elective III
+                    <ul>
+                        <li>
+                            Psychotherapeutics - II 
+                        </li>
+                        <li>
+                            Industrial Clinical Psychology
+                        </li>
+                    </ul>
+                </li>
+            </ol>  
+        </div>  
+    </div>
+    {% endblock %}  
+</body>
+</html>
