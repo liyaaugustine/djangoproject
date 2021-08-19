@@ -23,4 +23,7 @@ urlpatterns = [
     path('checking',views.checking,name='checking'),
     path('uprofile',views.uprofile,name='uprofile'),
     path('vsingle/<int:userid>',views.vsingle,name='vsingle'),
+    path('delete/<int:delid>',views.delete,name='delete'),
+    path('deleteacc',views.deleteacc,name='deleteacc'),
+    path('uparticle/<int:itmid>',views.uparticle,name='uparticle'),
 ]

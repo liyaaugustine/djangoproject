@@ -14,6 +14,8 @@
             <tr>
                 <th>Name:</th>
                 <th>Click Below</th>
+                <th>Delete</th>
+                <th>Edit</th>
             </tr>
         </thead>
             <tbody>
@@ -21,6 +23,8 @@
                 <tr>
                     <td>{{itm.firstname}} {{itm.lastname}}</td>
                     <td><a href="vsingle/{{itm.id}}">View Details</a> </td>
+                    <td><a href="delete/{{itm.id}}">Delete account</a></td>
+                    <td><a href="vsingle/{{itm.id}}">Edit details</a></td>
                 </tr>
                 {% endfor %}
                

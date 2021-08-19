@@ -15,3 +15,6 @@ class UserDetails(models.Model):
     place=models.CharField(max_length=30)
     parentname=models.CharField(max_length=30)
     phone=models.BigIntegerField()
+class Profilepic(models.Model):
+    profilepic=models.FileField(upload_to='profimages/')
+    loginid=models.ForeignKey(Login,on_delete=models.CASCADE)

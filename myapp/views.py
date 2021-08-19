@@ -18,8 +18,7 @@ def form(request):
 def add(request):
     return render(request,'add.html')
 def result(request):
-    if request.method=='POST':
-
+    if request.method=='POST':     
         first=request.POST['fnum']
         sec=request.POST['snum']
         sum=int(first)+int(sec)
@@ -52,6 +51,19 @@ def child(request):
     articles=Article.objects.all() 
     print(articles)
     return render(request,'child.html',{'artcle':articles})
+def uparticle(request,itmid):
+    allpub=Article.objects.get(id=itmid)
+    return render(request,'updatearticle.html',{'pub':allpub})
+    if request.method=='POST':
+        try:
+            heading=request.POST['hline']
+            publication=request.POST['public']
+            upvalue=Article.objects.filter(id=itmid).update(headline=heading, publications=publication)
+            print(upvalue)
+            return render(request,'updatearticle.html', {'msg': 'updated'})
+        except Exception as error: 
+            return render(request,'updatearticle.html', {'msg': error})  
+    #return render(request,'updatearticle.html')    
 def foreign(request):
     if request.method=='POST':
         try:
@@ -65,13 +77,20 @@ def foreign(request):
             mobile=request.POST['mble']
             details=Login(Username=uname,Password=passw)
             details.save()
+            if request.FILES['pic']:
+                pics=request.FILES['pic']
+                print(pics,'------------------')
+                pictures=Profilepic(profilepic=pics,loginid=details)
+                pictures.save()
+            
             details2=UserDetails(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,phone=mobile,loginid=details)
             details2.save()
+        
             request.session['id']=details.id
             #return render(request,'foreign.html',{'message':'succesfully'})
             return redirect('home2')
-        except:
-             return render(request,'foreign.html',{'message':'error'})
+        except Exception as error:
+             return render(request,'foreign.html',{'message':error})
     creq=UserDetails.objects.all()
     return render(request,'foreign.html',{'chreq':creq})
 def sampleform(request):
@@ -102,11 +121,14 @@ def logauth(request):
             #return render(request,'logauth.html',{'mesge':error})
     return render(request,'logauth.html')
 def home2(request):
-    logid=request.session['id']
-    udetail=UserDetails.objects.get(loginid=logid)
-    #print(udetail.firstname)
-    #print(logid)
-    return render(request,'home.html',{'userd':udetail})
+    try:
+        logid=request.session['id']
+        udetail=UserDetails.objects.get(loginid=logid)
+        #print(udetail.firstname)
+        #print(logid)
+        return render(request,'home.html',{'userd':udetail})
+    except Exception as error:
+         return render(request,'home.html',{'err':error})
 def signout(request):
     del request.session['id']
     return redirect('logauth')
@@ -120,24 +142,10 @@ def checking(request):
     return render(request,'checking.html',{'checkdetails':checkdet})
 def uprofile(request):
     if request.method=='POST':
+        print('work')
         fname=request.POST['fname']
         lname=request.POST['lname']   
-        date=request.POST['date']
-        place=request.POST['place']
-        pname=request.POST['pname']
-        mobile=request.POST['phone']
-        id=request.session['id']
-        UserDetails.objects.filter(loginid=id).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
-        phone=mobile)
-        return redirect('vsingle/6')
-def vsingle(request,userid):
-    usrdata=UserDetails.objects.get(id=userid)
-    return render(request,'vsingle.html',{'profile':usrdata})
-    if request.method=='POST':
-        print('working')
-        fname=request.POST['fname']
-        lname=request.POST['lname']   
-        date=request.POST['date']
+        date=request.POST['ndate']
         place=request.POST['place']
         pname=request.POST['pname']
         mobile=request.POST['phone']
@@ -146,5 +154,39 @@ def vsingle(request,userid):
         phone=mobile)
         usrdata=UserDetails.objects.get(id=userid)
         return render(request,'vsingle.html',{'profile':usrdata})
+        #return redirect('vsingle')
+    return render(request,'vsingle.html')
+def vsingle(request,userid):
+    if request.method=='POST':
+        print('working -------------------------------------------------------------------------------------')
+        fname=request.POST['fname']
+        lname=request.POST['lname']   
+        date=request.POST['ndate']
+        place=request.POST['place']
+        pname=request.POST['pname']
+        mobile=request.POST['phone']
+        print(type(date))
+        #id=request.session['id']
+        UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
+        phone=mobile)
+        usrdata=UserDetails.objects.get(id=userid)
+        return render(request,'vsingle.html',{'profile':usrdata})
+    else:
+        usrdata=UserDetails.objects.get(id=userid)
+        return render(request,'vsingle.html',{'profile':usrdata})
+def delete(request,delid): #admin deleting
+    logdta=UserDetails.objects.get(id=delid)
+    logid=logdta.loginid_id
+    print(logid)
+    dellog=Login.objects.filter(id=logid).delete()
+    deluser=UserDetails.objects.filter(id=delid).delete()
+    
+    return redirect('foreign')
+def deleteacc(request):
+    acc=request.session['id']
+    UserDetails.objects.filter(loginid=acc).delete()
+    Login.objects.filter(id=acc).delete()
+    return redirect('foreign')
+
 
 
