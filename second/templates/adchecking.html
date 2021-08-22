@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Requests</title>
+    <title>Admin checking</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Admission Requests</h1>
     <table class="table">
         <thead>
             <tr>
@@ -17,15 +16,16 @@
                 <th>Delete</th>
             </tr>
         </thead>
-            <tbody>
-                {% for item in reqchekhing %}
+            {% for itm in checkdetails %}
                 <tr>
-                    <td>{{item.candidatename}} {{item.parentname}}</td>
-                    <td><a href="details/{{item.id}}">View Details</a> </td>
-                    <td><a href="delete/{{item.id}}">Delete</a></td>
+                    <td>{{itm.firstname}} {{itm.lastname}}</td>
+                    <td><a href="vsingle/{{itm.id}}">View Details</a> </td>
+                    <td><a href="delete/{{itm.id}}">Delete account</a></td>
                 </tr>
-                {% endfor %}
+            {% endfor %}
+               
             </tbody>
     </table>
-</body>
+            <tbody>
+</body><!--no need this page delete-->
 </html>

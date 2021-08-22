@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse  
 from . models import *
 
@@ -31,11 +31,19 @@ def mswsyllabus(request):
     return render(request,'mswsyllabus.html')
 def login(request):
     if request.method=='POST':
-        uname=request.POST['uname']
-        apass=request.POST['pass']
-        admin=MyLogin(username=uname,password=apass)
-        admin.save()
-        return render(request,'login.html',{'message':'Succesfully Submitted'})
+        try:
+            uname=request.POST['uname']
+            apass=request.POST['pass']
+            admin=MyLogin(username='liya@gmail.com',password='123456')
+            admin.save()
+            
+            adlog=MyLogin.objects.get(username=uname,password=apass)#  error,this 2 line for setting default uname and passwd
+            request.session['uname']=adlog.username
+            
+            #return render(request,'login.html',{'message':'Success'})
+            return redirect('admin')
+        except Exception as err:
+            return render(request,'login.html',{'message':err })
     return render(request,'login.html')
 def admission(request):
     if request.method=='POST':
@@ -46,21 +54,19 @@ def admission(request):
             num=request.POST['contact']
             categ=request.POST['category']
             subject=request.POST['sub']
-            sslc=request.POST['sslc']
-            plus2=request.POST['plus2']
-            degree=request.POST['degree']
+            sslc=request.FILES['sslc']
+            plus2=request.FILES['plus2']
+            degree=request.FILES['degree']
             add=request.POST['additional']
             managment=Admission(email=mail,candidatename=cname,parentname=pname,phonenumber=num,category=categ,application=subject,sslc=sslc,plus2=plus2,degree=degree,qualification=add)
             managment.save()
-            student=Admission.objects.get(email=mail,candidatename=cname,parentname=pname,phonenumber=num,category=categ,application=subject,sslc=sslc,plus2=plus2,degree=degree,qualification=add)
-            request.session['id']=student.id
-            return render(request,'admission.html',{'message':'Succesfully Submitted'})
-            #return redirect('success')
-        except:
-            return render(request,'admission.html',{'message':'An Error Occured.Please Submitt again.'})
-    admsn=Admission.objects.all()
-    print(admsn)
-    return render(request,'admission.html',{'adm':admsn})
+            info=Admission.objects.get(email=mail)
+            request.session['id']=info.id
+            #return render(request,'admission.html',{'message':'Succesfully Submitted'})
+            return redirect('success')
+        except Exception as error:
+            return render(request,'admission.html',{'message':error})
+    return render(request,'admission.html')
 def admson(request):
     adm=request.GET['email']
     echeck=Admission.objects.filter(email=adm).exists()
@@ -73,18 +79,21 @@ def admson(request):
         return JsonResponse({
             'mesg':False
         })
-def details(request):
-    studdata=request.session['id']
-    studdetails=Admission.objects.get(id=studdata)
-    return render(request,'details.html',{'studentprofile':studdetails})
+def details(request,reqid):
+    studdata=Admission.objects.get(id=reqid)#admin viewing profile
+    return render(request,'details.html',{'studentprofile':studdata})
+def delete(request,delid):
+    Admission.objects.filter(id=delid).delete()
+    return redirect('requests')
 def success(request):
-    sname=request.session['id']
-    stud=Admission.objects.get(id=sname)
-    return render(request,'sussess.html',{'children':stud})
+    return render(request,'sussess.html')
 def requests(request):
-    req=request.session['id']
-    reqdetail=Admission.objects.get(id=req)
-    return render(request,'request.html',{'reqcheching':reqdetail})
+    req=Admission.objects.all()
+    return render(request,'request.html',{'reqchekhing':req})
+def sdetails(request):
+    child=request.session['id']#student viewing profile
+    childinfo=Admission.objects.get(id=child)
+    return render(request,'singleview.html',{'childdata':childinfo})
 def computerscience(request):
     return render(request,'computerscience.html')
 def bsccs(request):

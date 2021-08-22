@@ -27,7 +27,7 @@ body{
     
     <div class="container" style="height: 300px;">
     <center><h3>Admin Login Page</h3></center>
-    <form id="login" method="POST" action="admin">
+    <form id="login" method="POST" action="login">
         {% csrf_token %}
     <input type="email" name="uname" placeholder="Username" style="width: 50%; margin: 15px;" class="form-control"><b></b>
     <input type="password" name="pass" placeholder="Password" style="width:50%; margin: 15px;" class="form-control"><br>

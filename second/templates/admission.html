@@ -36,7 +36,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-8">
                     <h1 class="online mt-5">Online Admission 2021-2022</h1>
                     
-                    <form id="admission" method="POST" action="admission">
+                    <form id="admission" method="POST" action="admission" enctype="multipart/form-data">
                         {% csrf_token %}
                                 <div class="col-md-8">
                             <h2>Admission for Managment quota</h2>
@@ -102,28 +102,12 @@
                                 <button type="submit" class="btn btn-info btn-lg" >Submitt</button>
                             </div>
                         </div>
-                        {{message}}
+                       <label class="text-danger"> {{message}}</label>
                 </form>
             </div>
         </div>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Name:</th>
-                <th>Click Below</th>
-            </tr>
-        </thead>
-            <tbody>
-                {% for itm in adm %}
-                <tr>
-                    <td>{{itm.candidatename}} {{itm.parentname}}</td>
-                    <td><a href="details">View Details</a> </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-    </table>
-
+    
     <script>
        $(document).ready(function(){
         jQuery.validator.addMethod("noSpace", function(value, element){

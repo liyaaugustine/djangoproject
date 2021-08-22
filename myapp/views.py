@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse,JsonResponse  
+from django.http import HttpResponse,JsonResponse
 from . models import *  
-
+from datetime import datetime
 # Create your views here.
 def index(request):
     return  HttpResponse('hai hellow')
@@ -140,25 +140,10 @@ def vprofile(request):
 def checking(request):
     checkdet=UserDetails.objects.all()
     return render(request,'checking.html',{'checkdetails':checkdet})
-def uprofile(request):
-    if request.method=='POST':
-        print('work')
-        fname=request.POST['fname']
-        lname=request.POST['lname']   
-        date=request.POST['ndate']
-        place=request.POST['place']
-        pname=request.POST['pname']
-        mobile=request.POST['phone']
-        id=request.session['id']
-        UserDetails.objects.filter(loginid=id).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
-        phone=mobile)
-        usrdata=UserDetails.objects.get(id=userid)
-        return render(request,'vsingle.html',{'profile':usrdata})
-        #return redirect('vsingle')
-    return render(request,'vsingle.html')
+    #return render(request,'vsingle.html')
 def vsingle(request,userid):
     if request.method=='POST':
-        print('working -------------------------------------------------------------------------------------')
+        print('working ------------------------------------------------------')
         fname=request.POST['fname']
         lname=request.POST['lname']   
         date=request.POST['ndate']
@@ -166,8 +151,11 @@ def vsingle(request,userid):
         pname=request.POST['pname']
         mobile=request.POST['phone']
         print(type(date))
+        stri=date
+        newdate=datetime.strptime(stri, "%m/%d/%Y")   
+        print(type(newdate))
         #id=request.session['id']
-        UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
+        UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=newdate,place=place,parentname=pname,
         phone=mobile)
         usrdata=UserDetails.objects.get(id=userid)
         return render(request,'vsingle.html',{'profile':usrdata})
