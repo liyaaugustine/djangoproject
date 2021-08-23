@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from . models import *  
 from datetime import datetime
+from django.core.mail import send_mail
+from random import randint
 # Create your views here.
 def index(request):
     return  HttpResponse('hai hellow')
@@ -77,7 +79,7 @@ def foreign(request):
             mobile=request.POST['mble']
             details=Login(Username=uname,Password=passw)
             details.save()
-            if request.FILES['pic']:
+            if 'pic' in request.FILES:
                 pics=request.FILES['pic']
                 print(pics,'------------------')
                 pictures=Profilepic(profilepic=pics,loginid=details)
@@ -88,6 +90,18 @@ def foreign(request):
         
             request.session['id']=details.id
             #return render(request,'foreign.html',{'message':'succesfully'})
+            #id=request.session['id']#for email just
+            #foremail=Login.objects.get(id=id)
+            #for sending mail
+            #otp=randint(1000, 9999)
+            #send_mail (
+                #'OTP for creating account',
+                #str(otp),
+                #'liyaaugustinek@gmail.com',
+                #[foremail.Username],
+                #fail_silently=False,
+            #)
+
             return redirect('home2')
         except Exception as error:
              return render(request,'foreign.html',{'message':error})
@@ -136,7 +150,9 @@ def vprofile(request):
     prodata=request.session['id']
     prodetails=UserDetails.objects.get(loginid=prodata)
     logindata=Login.objects.get(id=prodata)
-    return render(request,'profile.html',{'profile':prodetails, 'logdata':logindata})
+    image=Profilepic.objects.filter(loginid=prodata)
+    print(image)
+    return render(request,'profile.html',{'profile':prodetails, 'logdata':logindata, 'imagedata':image})
 def checking(request):
     checkdet=UserDetails.objects.all()
     return render(request,'checking.html',{'checkdetails':checkdet})
@@ -150,15 +166,20 @@ def vsingle(request,userid):
         place=request.POST['place']
         pname=request.POST['pname']
         mobile=request.POST['phone']
+        if 'dppic' in request.FILES:
+            imgs=request.FILES['dppic']
+            print(imgs,'------------------')
+            pict=Profilepic.objects.filter(id=userid).update(profilepic=imgs)
         print(type(date))
-        stri=date
-        newdate=datetime.strptime(stri, "%m/%d/%Y")   
-        print(type(newdate))
+        #stri=date
+        #newdate=datetime.strptime(stri, "%m/%d/%Y")   
+        #print(type(newdate))
         #id=request.session['id']
-        UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=newdate,place=place,parentname=pname,
+        UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
         phone=mobile)
         usrdata=UserDetails.objects.get(id=userid)
-        return render(request,'vsingle.html',{'profile':usrdata})
+        #picture=Profilepic.objects.get(loginid=userid)
+        return render(request,'vsingle.html',{'profile':usrdata}) #'imgdt':picture})
     else:
         usrdata=UserDetails.objects.get(id=userid)
         return render(request,'vsingle.html',{'profile':usrdata})
