@@ -47,8 +47,31 @@
               <div  style="width:320px; margin:10px;">
                 <img src="{% static 'Images/colgflwr.jpg' %}" width="300px" height="300px">
               </div>
+              <!--image adding by admin-->
+              {% for itm in mesg %}
+              <div  style="width:320px; margin:10px;">
+                <img src="{{itm.images.url}}" width="300px" height="300px">
+              </div>
+              {% endfor %}
           </div>
-      </div>
+      </div><br>
+
+      <!--Adding images by admin-->
+      {% if 'aid' in request.session %}
+      <form action="images" method="POSt" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group row">
+          <h3 class="ml-5">Add images</h3>
+
+          <input type="file" name="img" class="form-control ml-5" style="width: 500px;">
+          <button class="btn btn-primary ml-5" type="submit">Save</button>
+          {{messg}}
+          <a href="" class="btn btn-info ml-5">Added Images</a><!--list of images and delete option-->
+        </div>
+
+      </form> <br>
+      {% endif %}
       {% endblock %}
       </body>
       </html>

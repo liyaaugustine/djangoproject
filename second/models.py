@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import Q,F
 
+
 class Login(models.Model):
     Username=models.CharField(max_length=30)
     Password=models.CharField(max_length=8)
@@ -22,21 +23,73 @@ class Publication(models.Model):
 class Article(models.Model):
     headline=models.CharField(max_length=100)
     publications=models.ManyToManyField(Publication)
+
 class MyLogin(models.Model):
     username=models.CharField(max_length=30)
     password=models.CharField(max_length=10)
 
+class StudentLogin(models.Model):
+    username=models.CharField(max_length=30)
+    password=models.CharField(max_length=8)
+
 class Admission(models.Model):
-    email=models.EmailField(max_length=100)
+    usertype=models.CharField(max_length=20)
+    email=models.EmailField(max_length=100)#this remove
     candidatename=models.CharField(max_length=50)
     parentname=models.CharField(max_length=50)
     phonenumber=models.BigIntegerField()
     category=models.CharField(max_length=50)
     application=models.CharField(max_length=100)
+    sslcmark=models.CharField(max_length=10)
+    plus2mark=models.CharField(max_length=10)
+    ugmark=models.CharField(max_length=10)
     sslc=models.FileField(upload_to='certificates/')
     plus2=models.FileField(upload_to='certificates/')
     degree=models.FileField(upload_to='certificates/')
     qualification=models.CharField(max_length=100)
+    logid=models.ForeignKey(StudentLogin,on_delete=models.CASCADE)
+class Degree(models.Model):
+    usertype=models.CharField(max_length=20)
+    email=models.EmailField(max_length=100)# remove this field from 2 table 
+    candidatename=models.CharField(max_length=50)
+    parentname=models.CharField(max_length=50)
+    phonenumber=models.BigIntegerField()
+    category=models.CharField(max_length=50)
+    application=models.CharField(max_length=100)
+    sslcmark=models.CharField(max_length=10)
+    plus2mark=models.CharField(max_length=10)
+    sslc=models.FileField(upload_to='certificates/')
+    plus2=models.FileField(upload_to='certificates/')
+    qualification=models.CharField(max_length=100)
+    logid=models.ForeignKey(StudentLogin,on_delete=models.CASCADE)
+class Message(models.Model):
+    studentname=models.CharField(max_length=50)
+    mail=models.EmailField(max_length=100)
+    contact=models.BigIntegerField()
+    message=models.TextField()  
+class Count(models.Model):
+    student=models.CharField(max_length=20)
+    teacher=models.CharField(max_length=20)
+    course=models.CharField(max_length=20)
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+class Event(models.Model):
+    month=models.CharField(max_length=10)#make this as a single table 
+    day=models.CharField(max_length=15)
+    event=models.CharField(max_length=30)
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+class ContactDetails(models.Model):
+    address=models.TextField()
+    email=models.EmailField(max_length=100)
+    firstnum=models.BigIntegerField()
+    secnum=models.BigIntegerField()
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+class Image(models.Model):
+    images=models.FileField(upload_to='certificates/')
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+
+
+
+
 
 
 

@@ -71,15 +71,30 @@
                     <a class="nav-link" href="contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="images">Images</a>
+                    <a class="nav-link" href="img">Images</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="admission">Admission</a>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">More</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="studlogin">Student Login</a>
+                        <a class="dropdown-item" href="studlogout">Student Logout</a>
+                    </div>
+                </li>
             </ul>
         </div>
-        <button type="submit" class="btn btn-warning" style="margin-left:400px;"><a href="login">Login</a>
-        </button><!--login button for admin-->
+
+        {% if 'aid' in request.session %}
+        <a href="admin" class="btn btn-info ml-auto mr-5" >Admin Page</a>
+        
+        {% else %}
+
+        <button type="submit" class="btn btn-warning ml-auto"><a href="login">Login</a>
+        </button>
+        {% endif %}
+        <!--login button for admin-->
     </nav>
       {% block content%}
        {% endblock  %}

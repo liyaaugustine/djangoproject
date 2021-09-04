@@ -1,4 +1,4 @@
-
+{% extends 'sidenavadmin.html'%} 
 {%block content%}
 {% load static %}
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
-        h1{
+        .top{
             background-color: turquoise;
         }
         .admin{
@@ -22,39 +22,55 @@
     </style>
 </head>
 <body>
-    <h1>ADMIN MASTER PAGE</h1>
+
+    {{adm}}<!--this is for, by login with username and pswrd then only admin can see this page-->
+    
 <div class="container">
     <div class="row">
+        
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="admin p-5 mt-5">
-                <h3 style="color: red;"><a href="images" >VIEW GALLERY</a></h3>
+                <h3><a href="images" style="color: green;">ADD NEW IMAGE</a></h3>
             </div>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="admin p-5 mt-5">
-                <h3 style="color: green;"><a href="">ADD IMAGE</a></h3>
+                <h3><a href="contact" style="color: indigo;"> EDIT CONTACT</a></h3>
             </div>
-        </div>
+        </div> 
+        
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="admin p-5 mt-5">
-                <h3 style="color: indigo;">EDIT CONTACT</h3>
+                <h3><a href="messages" style="color:darkmagenta;"> VIEW MESSAGES</a></h3>
+            </div>
+        </div> 
+        
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="admin p-4 mt-5">
+                <h3> <a href="requests" style="color: maroon;">VIEW PG <br>REQUESTS</a></h3>
             </div>
         </div> 
         <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="admin p-5 mt-5">
-                <h3 style="color:darkmagenta;"> VIEW COURSES</h3>
+            <div class="admin p-4 mt-5">
+                <h3> <a href="ugreq" style="color: red;">VIEW UG <br>REQUESTS</a></h3>
             </div>
         </div> 
         <div class="col-lg-4 col-md-4 col-sm-6">
-            <div class="admin p-5 mt-5">
-                <h3 style="color: maroon;"> <a href="requests">VIEW STUDENTS</a></h3>
+            <div class="admin p-4 mt-5">
+                <h3><a href="addcontact" style="color:darkmagenta;">ADD CONTACT DETAILS</a> </h3>
             </div>
         </div> 
+
         <div class="col-lg-4 col-md-4 col-sm-6">
             <div class="admin p-5 mt-5">
-                <h3 style="color:orangered ;">EDIT FEATURES</h3>
+                <h3 ><a href="editing" style="color:orangered ;">ADD EVENTS</a> </h3>
             </div>
         </div>    
+        <div class="col-lg-4 col-md-4 col-sm-6">
+            <div class="admin p-5 mt-5">
+                <h3 ><a href="addteacher" style="color:green;">ADD COUNTS</a> </h3>
+            </div>
+        </div> 
     </div>
 </div>
 

@@ -73,23 +73,31 @@ body{
 
         <div class="col-lg-5 teacher m-5 p-5">
             <b>Students<br>
-            800+</b>
+            {{stud.student}}</b>
         </div>
         
         <div class="col-lg-5 teacher m-5 p-5">
             <b>Courses<br>
-            9</b>
+            {{stud.course}}</b>
         </div>
 
         <div class="col-lg-5 teacher m-5 p-5">
             <b>Teachers<br>
-            40+</b>
+                {{stud.teacher}}</b>
         </div>
         <div class="col-lg-5 teacher m-5 p-5">
             <a href="about" style= "color: black;"><b>More Details</b></a>
         </div>
     </div>
 </div>
+
+<!--editing button for admin-->
+{% if 'aid' in request.session %}
+<button type="button" class="btn btn-success btn-lg ml-5"><a href="" class="p-3" style="color:white;">
+    Edit Details</a></button>
+{% endif %}<br><br>
+    <!--End of editing-->
+
 <script>
     $(document).ready(function(){  //slider code..
         $('#mySlider').lightSlider({

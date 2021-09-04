@@ -36,29 +36,91 @@ body{
         <div class="row">
             <div class="col-lg-3 address">
                 <h2 class="m-5">Address:</h2><br>
-                <h5>St.Thomas College, Thmarassery, <br>
+                <h5>{{details.address}} <br>
                     Kozhikode - 673586 Kerala, India</h5>
             </div>
             <div class="col-lg-3 address">
                 <h2 class="m-5">Email:</h2><br>
-                <h4>stthomas@gmailcom</h4>
+                <h4>{{details.email}}</h4>
             </div>
             <div class="col-lg-3 address">
                 <h2 class="m-5">Phone Number:</h2><br>  
                 <h5>
                     0091-495-2 232 085,2 232 164 <br>
                     Fax : 0091-495-2 233 174<br>
-                    Office Mobile : +91-9401 395 500<br>
-                    Director : +91-7026 385 135</h5>
+                    Office Mobile : {{details.firstnum}}<br>
+                    Director : {{details.secnum}}</h5>
             </div>
         </div>
-        <form>
-            <div class="form-group">
-                <input type="text" id="msg" placeholder="Ask your doubts" class="form-control my-5">
-                <button type="submit" class="btn btn-primary mx-5">Send message</button> 
+        <!--editing button for admin-->
+        {% if 'aid' in request.session %}
+        <button type="button" class="btn btn-success btn-lg">
+            <a href="" class="p-3" style="color:white;"data-toggle="modal" data-target="#example">
+            Edit</a></button>
+        {% endif %}
+            <!--End of editing-->
+
+            <!--editing-->
+<div class="modal fade" id="example">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Edit Contact Details</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
             </div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Change Address</label>
+                    <textarea name="addrs" placeholder="Address" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Change Email</label>
+                    <input type="email" name="mail" class="form-control" value="" placeholder="Mail id">
+                </div>
+                <div class="form-group">
+                    <label>Change PhoneNumber</label>
+                    <input type="number" name="num1" class="form-control" value="" placeholder="Office Number"><br>
+                    <input type="number" name="num2" class="form-control" value=""  placeholder="Dirctors Number">
+                </div>
+                <br>
+                    <button type="button"  class="btn btn-info" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-secondary ml-5">Add</button>
+                </div>   
+            </form><br>
+        </div>
+            </div>
+        </div>
+
+            <!--doubts can ask by student-->
+        <form  action="contact" method="POST">
+            {% csrf_token %}
+            <h2>Get In Touch</h2>
+            <h5>Have some suggestions or just want to say hi? Our support team are ready to help you 24/7.</h5>
+
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Name" class="form-control my-5" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="mail" name="mail" placeholder="Email" class="form-control my-5" required>
+            </div>
+            <div class="form-group">
+                <input type="number" id="num" name="num" placeholder="Phone Number" class="form-control my-5" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="msg" name="msg" placeholder="Message" required></textarea>
+            </div>
+                <button type="submit" name="submitt" class="btn btn-primary mx-5">Send message</button> 
+            
         </form>   
-    </div><br><br><br>
+    </div>
+    {{msg}}
+    <br><br><br>
+
     {% endblock %}
 </body>
 </html>

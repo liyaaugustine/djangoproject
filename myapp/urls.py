@@ -20,6 +20,7 @@ urlpatterns = [
     path('home2',views.home2,name='home2'),
     path('signout',views.signout,name='signout'),
     path('vprofile',views.vprofile,name='vprofile'),
+    path('upvprofile',views.upvprofile,name='upvprofile'),
     path('checking',views.checking,name='checking'),
     path('vsingle/<int:userid>',views.vsingle,name='vsingle'),
     path('delete/<int:delid>',views.delete,name='delete'),

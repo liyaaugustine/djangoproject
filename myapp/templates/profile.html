@@ -27,10 +27,10 @@
 
     <table class="table table-striped">
         <center><h1>Details</h1></center>
-            <tr>
+            <!--<tr>
                 <th>Username</th>
                 <td>{{logdata.Username}}</td>
-            </tr>
+            </tr>-->
             <tr>
                <th>Name</th>
             <td>{{profile.firstname}} {{profile.lastname}}</td>
@@ -67,7 +67,7 @@
                                 <span>&times;</span>
                             </button>
                         </div>
-                        <form method="POST" action="{%url 'vsingle' profile.id %}">
+                        <form method="POST" action="{%url 'upvprofile' %}" enctype="multipart/form-data">
                             {% csrf_token %}
                         <div class="modal-body">
                             <div class="form-group">
@@ -80,7 +80,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">Date</label>
-                                <input type="text"  name="ndate" class="form-control" value="{{profile.date}}" onfocus="(this.type='date')">
+                                <input type="text"  name="ndate" class="form-control" value="{{profile.date|date:'d-m-Y'}}" onfocus="(this.type='date')">
                             </div>
                             <div class="form-group">
                                 <label for="place">Place</label>
@@ -106,7 +106,7 @@
                     </div>
                         </div>
                     </div>
-                    
+                    {{newprofile}}
                    
                     
         {% endblock %}  

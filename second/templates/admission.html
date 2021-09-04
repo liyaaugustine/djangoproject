@@ -40,9 +40,18 @@
                         {% csrf_token %}
                                 <div class="col-md-8">
                             <h2>Admission for Managment quota</h2>
+
                             <div class="form-group mb-3">
-                            <label for="mail" id="elabl">Email</label>
-                            <input type="email" id="mail" name="mail" class="form-control">
+                                <label for="app">Application for</label>
+                                <select class="form-control custom-select" id="app" name="usertype" onchange="studhide()">
+                                    <option value="ug">UG</option>   
+                                    <option value="pg">PG</option>     
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-3">
+                                <label for="mail" id="elabl">Email</label>
+                                <input type="email" id="mail" name="mail" class="form-control">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="candidate">Name of Candidate</label>
@@ -56,32 +65,64 @@
                                 <label for="contact">Contact Number</label>
                                 <input type="number" id="contact" name="contact"class="form-control">
                             </div>
+                            
                             <div class="form-group mb-3">
-                                <label for="sub">Category</label>
-                            <select class="form-control custom-select" id="category" name="category">
-                                <option  disabled selected></option>
-                                <option>General</option>
-                                <option>OBC</option>
-                                <option>SC</option>
-                                <option>ST</option>
-                                <option>OTHERS</option>
-                            </select>
+                                <label for="category">Category</label>
+                                <select class="form-control custom-select" id="category" name="category">
+                                    <option  disabled selected></option>
+                                    <option>General</option>
+                                    <option>OBC</option>
+                                    <option>SC</option>
+                                    <option>ST</option>
+                                    <option>OTHERS</option>
+                                </select>
+                            </div>
+                            <!--Ug students data-->
+                            <div id="ug" class="form-group mb-3">
+                                <label for="sub">Subject</label>
+                                <select class="form-control custom-select" id="sub" name="sub">
+                                    <option value="" disabled selected>Select Subject</option>                                   
+                                    <option>BSW</option>                                    
+                                    <option>B.Com</option>
+                                    <option>Bsc.CS</option>
+                                    <option>Bsc.psychology</option>                                    
+                                    <option>BA English</option>
+                                </select>
+                            </div>
+                            <!--end of ug details-->
+
+                            <!--pg students details-->
+                            <div id="pg" style="display: none;">
+                                <div class="form-group mb-3">
+                                    <label for="sub">Subject</label>
+                                    <select class="form-control custom-select" id="subj" name="subj">
+                                        <option value="" disabled selected>Select Subject</option>
+                                        <option>MSW</option>
+                                        <option>M.Com</option>
+                                        <option>Msc.psychology</option>
+                                        <option>MA English</option>
+                                    </select>
+                                </div>    
+                                <div class="form-group mb-3">
+                                    <label for="sslcmark">Degree Mark In Percentage</label>
+                                    <input type="text" id="degremark" name="degremark" class="form-control">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="degree">Degree Mark/Grade</label>
+                                    <input type="file" id="degree" name="degree" class="form-control">
+                                </div>
+                            </div>
+                            <!--end of pg details-->
+
+                            <div class="form-group mb-3">
+                                <label for="sslcmark">SSLC Mark In Percentage</label>
+                                <input type="text" id="sslcmark" name="sslcmark" class="form-control">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="sub">Application for</label>
-                            <select class="form-control custom-select" id="sub" name="sub">
-                                <option value="" disabled selected>Select Subject</option>
-                                <option>MSW</option>
-                                <option>BSW</option>
-                                <option>M.Com</option>
-                                <option>B.Com</option>
-                                <option>Bsc.CS</option>
-                                <option>Bsc.psychology</option>
-                                <option>Msc.psychology</option>
-                                <option>BA English</option>
-                                <option>MA English</option>
-                            </select>
+                                <label for="plus2mark">Plus2 Mark In Percentage</label>
+                                <input type="text" id="plusmark" name="plusmark" class="form-control">
                             </div>
+                            
                             <div class="form-group mb-3">
                                 <label for="sslc">SSLC Mark/Grade</label>
                                 <input type="file" id="sslc"name="sslc" class="form-control">
@@ -90,13 +131,19 @@
                                     <label for="plus2">Plus 2 Mark/Grade</label>
                                     <input type="file" id="plus2" name="plus2"class="form-control">
                             </div>
-                            <div class="form-group mb-3">
-                                <label for="degree">Degree Mark/Grade</label>
-                                <input type="file" id="degree" name="degree" class="form-control">
-                            </div>
+                            
                             <div class="form-group mb-3">
                                 <label for="additional">Additional Qualification</label>
                                 <input type="text" id="additional" name="additional" class="form-control">
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label for="pass">Password</label>
+                                <input type="password" id="pass" name="pass" class="form-control">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="pass">Confirm Password</label>
+                                <input type="password" id="cpass" name="cpass"class="form-control">
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-info btn-lg" >Submitt</button>
@@ -136,11 +183,28 @@
                         sub:{
                             required:true
                         },
+                        subj:{
+                            required:true
+                        },
                         sslc:{
                             required:true
                         },
                         plus2:{
                             required:true
+                        },
+                        degree:{
+                            required:true
+                        },
+                        pass:{
+                            required:true,
+                            minlength:5,
+                            noSpace:true 
+                        },
+                        cpass:{
+                            required:true,
+                            equalTo:'#pass',
+                            minlength:5,
+                            noSpace:true 
                         }
                    },
                    messages:{
@@ -164,7 +228,18 @@
                     },
                     plus2:{
                         required:'please upload this file'
-                    }    
+                    },
+                    degree:{
+                        required:'please upload this file'
+                    },
+                    pass:{
+                        required:'Password required',
+                        minlength: "Your password must be at least 5 characters long",
+                        noSpace:'Whitespace not allowed'
+                    },
+                    cpass:{
+                        equalTo:'Password must need to match'
+                    }
                    }
                })
        })
@@ -191,6 +266,22 @@
                     })
                   })
               </script>
+        
+        <script>//hiding function 
+            function studhide(){
+                usertype=document.getElementById('app')
+                degre=document.getElementById('ug')
+                postgra=document.getElementById('pg')
+                if(usertype.value=='pg'){
+                    postgra.style.display= "block"
+                    degre.style.display="none"
+                }
+                else{
+                    postgra.style.display= "none"
+                    degre.style.display="block"
+                }
+            }
+        </script>
 
     
     {% endblock %}

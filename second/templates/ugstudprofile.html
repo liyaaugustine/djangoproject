@@ -1,0 +1,141 @@
+{% extends 'index.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view single</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body>
+    <table class="table table-striped">
+        <center><h1>Details</h1></center>
+        <tr>
+            <th>Application For</th>
+            <td> {{ugdata.usertype}}</td>
+        </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ugdata.email}}</td>
+            </tr>
+            <tr>
+               <th>Candidate name</th>
+            <td>{{ugdata.candidatename}}</td>
+            </tr>
+            <tr>
+               <th>Parent name</th>
+            <td>{{ugdata.parentname}}</td>
+            </tr>
+            <tr>
+                <th>Mobile number</th>
+            <td>{{ugdata.phonenumber}}</td>
+            </tr>
+            <tr>
+               <th>Category</th>
+            <td>{{ugdata.category}}</td>
+            </tr>
+            <tr>
+                <th>Subject</th>
+             <td>{{ugdata.application}}</td>
+             </tr>
+             <tr>
+                <th>SSLC Percentage</th>
+                <td>{{ugdata.sslcmark}}</td>
+                <td></td>
+             </tr>
+             <tr>
+                <th>Plus2 Percentage</th>
+                <td>{{ugdata.plus2mark}}</td>
+                <td></td>
+             </tr>
+             
+             <tr>
+                <th>SSLC</th>
+             <td>{{ugdata.sslc}}</td>
+             </tr>
+             <tr>
+                <th>Plus 2</th>
+             <td>{{ugdata.plus2}}</td>
+             </tr>
+             
+             <tr>
+                <th>Additional Qualification</th>
+             <td>{{ugdata.qualification}}</td>
+             </tr>
+        </table>
+        <a class="btn btn-info btn-lg pl-5 pr-5" 
+        data-toggle="modal" data-target="#example">Edit</a> 
+
+        <!--editing  -->
+        <div class="modal fade" id="example">
+         <div class="modal-dialog" role="document">
+             <div class="modal-content">
+                 <div class="modal-header">
+                     <h4>Edit Details</h4>
+                     <button type="button" class="close" data-dismiss="modal">
+                         <span>&times;</span>
+                     </button>
+                 </div>
+                 <form method="POST" action="{%url 'updateug' %}" enctype="multipart/form-data">
+                     {% csrf_token %}
+                 <div class="modal-body">
+                     <div class="form-group">
+                         <label for="mail">Email</label>
+                         <input type="text" id="mail" name="mail" class="form-control" value="{{ugdata.email}}">
+                     </div>
+                     <div class="form-group">
+                         <label for="cname">Candidate name</label>
+                         <input type="text" id="cname" name="cname" class="form-control"value="{{ugdata.candidatename}}">
+                     </div>
+                     <div class="form-group">
+                         <label for="pname">Parent name</label>
+                         <input type="text" id="pname" name="pname" class="form-control" value="{{ugdata.parentname}}">
+                     </div>
+                     <div class="form-group">
+                         <label for="place">Mobile Number</label>
+                         <input type="text" id="phone" name="phone" class="form-control"value={{ugdata.phonenumber}}>
+                     </div>
+                     <div class="form-group">
+                         <label for="ctgry">Category</label>
+                         <input type="text" id="ctgry" name="ctgry" class="form-control"value={{ugdata.category}}>
+                     </div>
+                     <div class="form-group">
+                         <label for="sub">Subject</label>
+                         <input type="text" id="sub" name="sub" class="form-control"value="{{ugdata.application}}">
+                     </div>
+                     <div class="form-group">
+                         <label for="ssperc">SSLC Percentage</label>
+                         <input type="text" id="ssperc" name="ssperc" class="form-control" value="{{ugdata.sslcmark}}">
+                     </div>
+                     <div class="form-group">
+                        <label for="plperc">Plus2 Percentage</label>
+                        <input type="text" id="plperc" name="plperc" class="form-control" value="{{ugdata.plus2mark}}">
+                    </div>
+                     <div class="form-group">
+                         <label for="sslc">SSLC</label>
+                         <input type="text" id="sslc" name="sslc" class="form-control"value="{{ugdata.sslc}}" onfocus="(this.type='file')">
+                     </div>
+                     <div class="form-group">
+                        <label for="plus">Plus 2</label>
+                        <input type="text" id="plus" name="plus" class="form-control"value="{{ugdata.plus2}}" onfocus="(this.type='file')">
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="pname">Additional Qualification</label>
+                        <input type="text" id="add" name="add" class="form-control" value="{{ugdata.qualification}}">
+                    </div>
+                     <div><br>
+                         <button type="button"  class="btn btn-info" data-dismiss="modal">Close</button>
+                         <button type="submit" class="btn btn-secondary ml-5">Save Changes</button>
+                     </div>   
+                 </form><br>
+             </div>
+                 </div>
+             </div>
+             {% endblock %}
+</body>
+</html>

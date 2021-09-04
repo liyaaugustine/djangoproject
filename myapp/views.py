@@ -153,10 +153,37 @@ def vprofile(request):
     image=Profilepic.objects.filter(loginid=prodata)
     print(image)
     return render(request,'profile.html',{'profile':prodetails, 'logdata':logindata, 'imagedata':image})
+def upvprofile(request): 
+    updation=request.session['id']
+    if request.method=='POST':
+        print(' vprofile checking ------------------------------------------------------')
+        fname=request.POST['fname']
+        lname=request.POST['lname']   
+        date=request.POST['ndate']
+        place=request.POST['place']
+        pname=request.POST['pname']
+        mobile=request.POST['phone']  
+        #if 'dppic' in request.FILES:
+            #imgs=request.FILES['dppic']
+            #print('image checking --------------------------------------')
+            #pict=Profilepic.objects.filter(loginid=updation).update(profilepic=imgs)
+       #else:
+            #inser=Profilepic(profilepic=imgs,loginid=updation)
+            #inser.save()
+
+        UserDetails.objects.filter(loginid=updation).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
+        phone=mobile)
+        usrdata=UserDetails.objects.get(loginid=updation)
+        #picture=Profilepic.objects.filter(id=updation)
+        return render(request,'profile.html',{'profile':usrdata}) #, 'imagedata':picture})
+    else:
+        usrdata=UserDetails.objects.get(loginid=updation)
+        #picture=Profilepic.objects.filter(id=updation)
+        return render(request,'profile.html',{'profile':usrdata})#, 'imagedata':picture
+   
 def checking(request):
     checkdet=UserDetails.objects.all()
     return render(request,'checking.html',{'checkdetails':checkdet})
-    #return render(request,'vsingle.html')
 def vsingle(request,userid):
     if request.method=='POST':
         print('working ------------------------------------------------------')
@@ -166,20 +193,12 @@ def vsingle(request,userid):
         place=request.POST['place']
         pname=request.POST['pname']
         mobile=request.POST['phone']
-        if 'dppic' in request.FILES:
-            imgs=request.FILES['dppic']
-            print(imgs,'------------------')
-            pict=Profilepic.objects.filter(id=userid).update(profilepic=imgs)
-        print(type(date))
-        #stri=date
-        #newdate=datetime.strptime(stri, "%m/%d/%Y")   
-        #print(type(newdate))
+        print(type(date))   
         #id=request.session['id']
         UserDetails.objects.filter(id=userid).update(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,
         phone=mobile)
         usrdata=UserDetails.objects.get(id=userid)
-        #picture=Profilepic.objects.get(loginid=userid)
-        return render(request,'vsingle.html',{'profile':usrdata}) #'imgdt':picture})
+        return render(request,'vsingle.html',{'profile':usrdata})
     else:
         usrdata=UserDetails.objects.get(id=userid)
         return render(request,'vsingle.html',{'profile':usrdata})

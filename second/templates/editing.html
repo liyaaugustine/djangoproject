@@ -1,0 +1,44 @@
+{% extends 'sidenavadmin.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Editing</title>
+</head>
+<body>
+    <h1 class="m-5">Add Upcoming Events</h1>
+    <div class="col-md-8">
+        <form class="m-5" id="edit" action="" method="POST" enctype="multipart/form-data">
+           {% csrf_token %}
+
+           <!--for about paege--> 
+               <div class="m-3">
+                    <label for="month">Upcoming Events Month</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="month" name="month"placeholder="Enter Month">
+                    </div> 
+
+                    <label for="day">Upcoming Events Day</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="day" name="day"placeholder="Date and Day">
+                    </div> 
+
+                    <label for="event">Upcoming Events</label>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="event" name="event"placeholder="Events">
+                    </div> 
+                </div>
+               {{mesg}}
+                      
+                <div class="mb-3">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+                </div>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

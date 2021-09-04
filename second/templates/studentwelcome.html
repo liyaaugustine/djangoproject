@@ -1,0 +1,43 @@
+{% extends 'index.html'%} 
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Welcome Page</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+    .pic{
+    background-image: url("{% static 'Images/welc3.jpg' %}");  
+    background-size: cover;
+    height: 500px;
+}
+.text{
+ background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through  */
+  color: aqua;
+  width: 100%;
+  height: 500px;
+  font-size:70px;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+       <div class="pic">
+           <div class="text">
+            <h1> <span style="font-size: 85px; color:white;">Education</span> Is The Key To 
+                <span style="font-size: 85px; color:white;">Success</span></h1>
+                <a href="success" class="btn btn-success btn-lg m-5">Your Admission Details <br>PG</a>
+                <a href="ugsuccess" class="btn btn-success btn-lg m-5">Your Admission Details <br>UG</a>
+            </div>
+       </div>    
+
+
+    {% endblock %}  
+</body>
+</html>
