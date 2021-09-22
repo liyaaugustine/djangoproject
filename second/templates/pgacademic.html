@@ -1,0 +1,56 @@
+{% extends 'index.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!--icons cdn-->
+    <title>PG Academic</title>
+    <style>
+    body{
+        background-image: url("{% static 'images/s5.jpg' %}");  
+        background-size: cover; 
+        }
+    .black{
+        background: white;
+        background: rgba(125, 0, 0, 0.5); /* Black see-through  */
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-2 col-md-1 col-sm-1"></div>
+            <div class="col-lg-7 col-md-8 col-sm-8 mt-3">
+                <table class="table  black">
+                    <tr>
+                        <th>Courses</th>
+                        <th>Fees</th>
+                        <th>Eligibility</th>
+                        <th>Job Profiles</th>
+                    </tr>
+                    {% for item in pginfo %}
+                    <tr>
+                        <td>{{item.subjects}}</td>
+                        <td>{{item.fees}}</td>
+                        <td>{{item.eligibility}}</td> 
+                        <td>{{item.job}}</td>
+
+                        {% if 'aid' in request.session %}
+                        <td><a href="editpgfees/{{item.id}}" class="btn btn-warning"><i class="fa fa-edit"></i></a></td>
+                        <td><a href="delpgfees/{{item.id}}" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+                        {% endif %}
+                        
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}  
+</body>
+</html>

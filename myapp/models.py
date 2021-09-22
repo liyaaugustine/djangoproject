@@ -18,7 +18,7 @@ class UserDetails(models.Model):
 class Profilepic(models.Model):
     profilepic=models.FileField(upload_to='profimages/')
     loginid=models.ForeignKey(Login,on_delete=models.CASCADE)
-#class AjaxUdetails(models.Model):
-    #name=models.CharField(max_length=30)
-    #contact=models.BigIntegerField()
-    #place=models.CharField(max_length=30)
+class AjaxUdetails(models.Model):
+    name=models.CharField(max_length=30)
+    contact=models.BigIntegerField()
+    place=models.CharField(max_length=30)

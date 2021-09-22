@@ -1,4 +1,4 @@
-{% extends 'index.html'%} 
+{% extends 'sidenavstud.html'%} 
 {%block content%}
 {% load static %}
 <!DOCTYPE html>
@@ -8,76 +8,94 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>view single</title>
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        body{
+                background-image: url("{% static 'images/s5.jpg' %}");  
+                background-size: cover; 
+        }
+        .black{
+            background: white;
+            background: rgba(125, 0, 0, 0.5); /* Black see-through  */
+            }
+    </style>
 </head>
 <body>
-    <table class="table table-striped">
-        <center><h1>Details</h1></center>
-        <tr>
-            <th>Application For</th>
-            <td>{{childdata.usertype}} </td>
-        </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{childdata.email}}</td>
-            </tr>
-            <tr>
-               <th>Candidate name</th>
-            <td>{{childdata.candidatename}} </td>
-            </tr>
-            <tr>
-               <th>Parent name</th>
-            <td>{{childdata.parentname}}</td>
-            </tr>
-            <tr>
-                <th>Mobile number</th>
-            <td>{{childdata.phonenumber}}</td>
-            </tr>
-            <tr>
-               <th>Category</th>
-            <td>{{childdata.category}}</td>
-            </tr>
-            <tr>
-                <th>Subject</th>
-             <td>{{childdata.application}}</td>
-             </tr>
-             <tr>
-                <th>SSLC Percentage</th>
-                <td>{{childdata.sslcmark}}</td>
-                <td></td>
-             </tr>
-             <tr>
-                <th>Plus2 Percentage</th>
-                <td>{{childdata.plus2mark}}</td>
-                <td></td>
-             </tr>
-             <tr>
-                <th>Degree Percentage</th>
-                <td>{{childdata.ugmark}}</td>
-                <td></td>
-             </tr>
-             <tr>
-                <th>SSLC</th>
-             <td>{{childdata.sslc}}</td>
-             </tr>
-             <tr>
-                <th>Plus 2</th>
-             <td>{{childdata.plus2}}</td>
-             </tr>
-             <tr>
-                <th>Degree</th>
-             <td>{{childdata.degree}}</td>
-             </tr>
-             <tr>
-                <th>Additional Qualification</th>
-             <td>{{childdata.qualification}}</td>
-             </tr>
-             
-        </table>
-        <a class="btn btn-info btn-lg pl-5 pr-5" 
-        data-toggle="modal" data-target="#example">Edit</a> 
-
+    <div class="container-fluid">
+        <img src="{% static 'images/dpc.PNG' %}" alt="" style="height:200px;" class="rounded-circle mx-auto d-block">
+    </div> <!--end image section-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-2 col-md-1 col-sm-1"></div>
+            <div class="col-lg-6 col-md-8 col-sm-8 mt-3">
+                <center><h1> Halo {{childdata.candidatename}}, Your Details</h1></center>
+                <table class="table black">
+                    <tr>
+                        <th>Application For</th>
+                        <td>{{childdata.usertype}} </td>
+                    </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{childdata.email}}</td>
+                        </tr>
+                        <tr>
+                           <th>Candidate name</th>
+                        <td>{{childdata.candidatename}} </td>
+                        </tr>
+                        <tr>
+                           <th>Parent name</th>
+                        <td>{{childdata.parentname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile number</th>
+                        <td>{{childdata.phonenumber}}</td>
+                        </tr>
+                        <tr>
+                           <th>Category</th>
+                        <td>{{childdata.category}}</td>
+                        </tr>
+                        <tr>
+                            <th>Subject</th>
+                         <td>{{childdata.application}}</td>
+                         </tr>
+                         <tr>
+                            <th>SSLC Percentage</th>
+                            <td>{{childdata.sslcmark}}</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <th>Plus2 Percentage</th>
+                            <td>{{childdata.plus2mark}}</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <th>Degree Percentage</th>
+                            <td>{{childdata.ugmark}}</td>
+                            <td></td>
+                         </tr>
+                         <tr>
+                            <th>SSLC</th>
+                         <td>{{childdata.sslc}}</td>
+                         </tr>
+                         <tr>
+                            <th>Plus 2</th>
+                         <td>{{childdata.plus2}}</td>
+                         </tr>
+                         <tr>
+                            <th>Degree</th>
+                         <td>{{childdata.degree}}</td>
+                         </tr>
+                         <tr>
+                            <th>Additional Qualification</th>
+                         <td>{{childdata.qualification}}</td>
+                         </tr>
+                </table>
+                <a class="btn btn-info btn-lg pl-5 pr-5" 
+                data-toggle="modal" data-target="#example">Edit</a> 
+            </div>
+        </div>
+    </div>
+       
         <!--editing  -->
         <div class="modal fade" id="example">
          <div class="modal-dialog" role="document">

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admission</title>
     <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--cdn of ajax-->
-    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script></script><!--cdn of jqueryvalidation-->
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script><!--cdn of jqueryvalidation-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
         .online{
@@ -157,8 +157,9 @@
     
     <script>
        $(document).ready(function(){
-        jQuery.validator.addMethod("noSpace", function(value, element){
-                return value.indexOf(" ") < 0 && value != ""}); 
+        jQuery.validator.addMethod("noSpace", function(value, element)
+        {
+                return value.indexOf(" ")< 0 || (value.trim() == value);}); 
                $('#admission').validate({
                    rules:{
                        mail:{
@@ -198,6 +199,7 @@
                         pass:{
                             required:true,
                             minlength:5,
+                            maxlength:8,
                             noSpace:true 
                         },
                         cpass:{
@@ -235,6 +237,7 @@
                     pass:{
                         required:'Password required',
                         minlength: "Your password must be at least 5 characters long",
+                        maxlength:"Your Password must be less than 8 characters",
                         noSpace:'Whitespace not allowed'
                     },
                     cpass:{

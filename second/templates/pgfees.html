@@ -1,0 +1,46 @@
+{% extends 'sidenavadmin.html'%} 
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add PG Details</title>
+
+</head>
+<body>
+
+    <div class="col-md-8">
+        <form class="m-5" id="edit" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <h2>PG Details</h2>
+                <div class="m-3">
+                    <label>Name of PG Course</label>
+                    <div class="form-group">
+                        <input type="text" name="pcrse" class="form-control" placeholder="Course" required>
+                    </div>
+                    <label>Fees</label>
+                    <div class="form-group">
+                        <input type="text" name="pfees" class="form-control" placeholder="Fees" required>
+                    </div>
+                    <label>Eligibility</label>
+                    <div class="form-group">
+                        <input type="text" name="peligibility" class="form-control" placeholder="Eligibility" required>
+                    </div> 
+                    <label>Job Profiles</label>
+                    <div class="form-group">
+                        <textarea name="pjob" class="form-control" placeholder="Jobs"></textarea>
+                    </div> 
+                    <br>  
+            <div class="mb-3"> {{msg}}
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+            </div>
+    </form>
+</div>
+{% endblock %} 
+    
+</body>
+</html>

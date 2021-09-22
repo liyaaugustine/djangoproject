@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+     .myfoot{
+        background: white;
+        background: rgba(0, 0, 0, 0.5); 
+    }
+    .footer{
+        position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+    }
+</style>
 </head>
 <body>
 
@@ -25,5 +39,12 @@
 
         {% block content%}
        {% endblock  %}
+       <br>
+       <!--footers-->
+       <div class="container-fluid  mt-5">
+           <footer class="footer p-4 myfoot" style="position: fixed;">
+                <b style="color: whitesmoke;">Email ID:thomas@gmail.com</b>
+            </footer>
+       </div>
 </body>
 </html>

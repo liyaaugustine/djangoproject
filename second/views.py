@@ -1,13 +1,33 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse  
 from . models import *
+from django.core.mail import send_mail
 
 # Create your views here.
 def new(r):
     return HttpResponse('Hai Its a new beginning!!')
 def home(request):
-    teachr=Count.objects.get(id=1)
-    return render(request,'welcomepage.html',{'stud':teachr})
+    return render(request,'welcomepage.html')
+def upcount(request):
+    newdata=request.session['aid']
+    if request.method=='POST':
+        snum=request.POST['stud']
+        cnum=request.POST['crse']
+        tnum=request.POST['tchr']
+        total=Count.objects.filter(loginid=newdata)
+        if total:
+            Count.objects.filter(loginid=newdata).update(student=snum,course=cnum,teacher=tnum)
+            return render(request,'welcomepage.html')
+        else:
+            details=Count(student=snum,course=cnum,teacher=tnum,loginid_id=newdata)
+            details.save()  
+            return render(request,'welcomepage.html')
+    else:
+        return render(request,'welcomepage.html')
+def displaycount(request):
+    datas=Count.objects.all()
+    clg=[{'cstud':itm.student,'csub':itm.course,'ctchr':itm.teacher}for itm in datas]
+    return JsonResponse({'mydata':clg})
 
 def contact(request):
     if request.method=='POST':
@@ -16,17 +36,71 @@ def contact(request):
             mail=request.POST['mail']
             number=request.POST['num']
             mesg=request.POST['msg']
-            quest=Message(studentname=sname,mail=mail,contact=number,message=mesg)
+            quest=Message(studentname=sname,mail=mail,contact=number,message=mesg,status='active')
             quest.save()
             return render(request,'contact.html',{'msg':'Message sended'})
         except Exception as error:
             return render(request,'contact.html',{'msg':error})
-    info=ContactDetails.objects.get(id=1)
-    return render(request,'contact.html',{'details':info})
-
+    return render(request,'contact.html')
+def editcontact(request):
+    newdata=request.session['aid']
+    if request.method=='POST':
+        adres=request.POST['addrs']
+        mail=request.POST['mail']
+        fnum=request.POST['num1']
+        snum=request.POST['num2']
+        cdata=ContactDetails.objects.filter(loginid=newdata)
+        if cdata:
+            ContactDetails.objects.filter(loginid=newdata).update( address=adres,email=mail,firstnum=fnum,secnum=snum)
+            return render(request,'contact.html')
+        else:
+            cont=ContactDetails(address=adres,email=mail,firstnum=fnum,secnum=snum,loginid_id=newdata)
+            cont.save()
+            return render(request,'contact.html')
+    else:
+        return render(request,'contact.html')
+def showcontact(request):
+    newinfo=ContactDetails.objects.all()
+    datas=[{'info':item.address,'cmail':item.email,'ofice':item.firstnum,'direct':item.secnum}for item in newinfo ]
+    return JsonResponse({'mydata':datas})
 def messages(request): #students sending doubts
-    msg=Message.objects.all()
-    return render(request,'messags.html',{'messg':msg})
+    actmsg=Message.objects.filter(status='active')
+    inact=Message.objects.filter(status='inactive')
+    return render(request,'messags.html',{'instatus':inact,'astatus':actmsg})
+def replymsg(request,rplid):
+    newdata=request.session['aid']
+    forid=Message.objects.get(id=rplid)
+    if request.method=='POST':
+        try:
+            rmsg=request.POST['reply']
+            foremailmsg=Reply.objects.filter(mesageid=rplid)
+            if foremailmsg:
+                foremail=Reply.objects.filter(mesageid=rplid).update(reply=rmsg)
+                Message.objects.filter(id=rplid).update(status='inactive')
+                foremail=Reply.objects.get(mesageid=rplid)
+                send_mail(
+                    'Reply From St Thomas College,',
+                    foremail.reply,
+                    'liyaaugustinek@gmail.com',
+                    [forid.mail],
+                    fail_silently=False,
+                    )
+                return render(request,'reply.html',{'msg':'Message Sended','question':forid})
+            else:
+                messge=Reply(reply=rmsg,loginid_id=newdata,mesageid_id=rplid)
+                messge.save()
+                Message.objects.filter(id=rplid).update(status='inactive')
+                send_mail(
+                    'Reply From St Thomas College,',
+                    messge.reply,
+                    'liyaaugustinek@gmail.com',
+                    [forid.mail],
+                    fail_silently=False,
+                    )
+                return render(request,'reply.html',{'msg':'Message Sended','question':forid}) 
+        except Exception as err:
+            return render(request,'reply.html',{'msg':err})
+    return render(request,'reply.html',{'question':forid})    
 def img(request):
     pic=Image.objects.all()       
     return render(request,'images.html',{'mesg':pic})
@@ -44,9 +118,30 @@ def images(request):#admin adding new image.
     else:
         pic=Image.objects.all()       
         return render(request,'images.html',{'mesg':pic})
+
 def about(request):
     newevnt=Event.objects.all()
     return render(request,'about.html',{'evnt':newevnt})
+def upmonth(request):
+    newdata=request.session['aid']
+    if request.method=='POST':
+        mnth=request.POST['month']
+        mnt=Month.objects.filter(loginid=newdata)
+        if mnt:
+            Month.objects.filter(loginid=newdata).update(month=mnth)
+            return redirect('about')
+        else:
+            newmonth=Month(month=mnth,loginid_id=newdata)
+            newmonth.save()
+            return redirect('about')
+    else:
+        newevnt=Event.objects.all()
+        return render(request,'about.html',{'evnt':newevnt,})
+def showmonth(request):
+    newmnth=Month.objects.all()
+    months=[{'mymonth':item.month} for item in newmnth]
+    return JsonResponse({'mydata':months})
+
 def achevments(request):
     return render(request,'achevments.html')
 def milestones(request):
@@ -88,8 +183,8 @@ def studlogin(request): # student logging
             request.session['sid']=stud.id
             print('---------------------------------------------------------------------')
             return redirect('studentwelcome')
-        except Exception as err:
-            return render(request,'studlogin.html',{'msg':err})
+        except:
+            return render(request,'studlogin.html',{'msg':'Invalid Userdetails'})
     return render(request,'studlogin.html')
 def studlogout(request):#student logout
     del request.session['sid']
@@ -147,11 +242,53 @@ def admson(request):
             'mesg':False
         })
 def details(request,reqid):
-    studdata=Admission.objects.get(id=reqid)#admin viewing pg students  profile
+    studdata=Admission.objects.get(id=reqid)#admin viewing single pg student  profile
     return render(request,'details.html',{'studentprofile':studdata})
-def ugdetails(request,ugid):#admin viewing ug students  profile
+def apgmail(request,apid): #sending accept message mail to PG
+    foremail=Admission.objects.get(id=apid)
+    send_mail(
+        'Congrats,',
+        'your application for PG Course in St.Thomas is Accepted.For more details please contact us soon!',
+        'liyaaugustinek@gmail.com',
+        [foremail.email],
+        fail_silently=False,
+    )
+    return render(request,'details.html',{'studentprofile':foremail,'msg':'Accepted mail sended to student'})
+def rpgmail(request,rpid): #sending Reject message mail to PG
+    foremail=Admission.objects.get(id=rpid)
+    send_mail(
+        'Sorry!!!',
+        'Your Application for PG Course in St.Thomas is Rejectd',
+        'liyaaugustinek@gmail.com',
+        [foremail.email],
+        fail_silently=False,
+    )
+    return render(request,'details.html',{'studentprofile':foremail,'msg':'Rejectdion  mail sended to student'})
+def ugdetails(request,ugid):#admin viewing single ug student  profile
     ugdata=Degree.objects.get(id=ugid)
     return render(request,'ugdetails.html',{'ugstud':ugdata})
+def augmail(request,amid): #sending accept message mail to UG
+    foremail=Degree.objects.get(id=amid)
+
+    send_mail(
+        'Congrats!!!,',
+        'Your application for UG Course in St.Thomas is Accepted.For more details please contact us soon!',
+        'liyaaugustinek@gmail.com',
+        [foremail.email],
+        fail_silently=False,
+        )
+    return render(request,'ugdetails.html',{'ugstud':foremail,'msg':'Accepted mail sended to student'})
+def rugmail(request,rmid): #sending Reject message mail to UG
+    foremail=Degree.objects.get(id=rmid)
+
+    send_mail(
+        'Sorry',
+        'Your Application for UG Course in St.Thomas is Rejectd',
+        'liyaaugustinek@gmail.com',
+        [foremail.email],
+        fail_silently=False,
+    )
+    return render(request,'ugdetails.html',{'ugstud':foremail,'msg':'Rejectdion  mail sended to student'})
 def delete(request,delid):#admin deleting from pg requests
     Admission.objects.filter(id=delid).delete()
     return redirect('requests')
@@ -163,9 +300,19 @@ def success(request):#welcome page for pg
 def ugsuccess(request):#welcome page for ug
     return render(request,'ugsuccess.html')
 def requests(request):#pg students requests
+    if request.method=='POST':
+        searchword=request.POST['srch']
+        searchstud=Admission.objects.filter(Q(email__icontains=searchword) | Q(candidatename__icontains=searchword) | 
+        Q(parentname__icontains=searchword))
+        return render(request,'request.html',{'reqchekhing':searchstud})
     req=Admission.objects.all()
     return render(request,'request.html',{'reqchekhing':req})
 def ugreq(request):#ug students requests
+    if request.method=='POST':
+        searchword=request.POST['srch']
+        searchstud=Degree.objects.filter(Q(email__icontains=searchword) | Q(candidatename__icontains=searchword) | 
+        Q(parentname__icontains=searchword))
+        return render(request,'ugreq.html',{'ugcheck':searchstud})
     degre=Degree.objects.all()
     return render(request,'ugreq.html',{'ugcheck':degre})
 def sdetails(request):
@@ -190,9 +337,18 @@ def upadmission(request): #updating pg student themselves
         slcmark=request.POST['ssperc']
         plmark=request.POST['plperc']
         dgmark=request.POST['degperc']
-        slc=request.FILES['sslc']#error in these three  file fields
-        plus2=request.FILES['plus']
-        degree=request.FILES['degre']
+        if 'sslc' in request.FILES:
+            slc=request.FILES['sslc']
+        else:
+            slc=request.POST['sslc']    
+        if 'plus' in request.FILES:
+            plus2=request.FILES['plus']
+        else:
+            plus2=request.POST['plus']
+        if 'degre' in request.FILES:
+            degree=request.FILES['degre']
+        else:
+            degree=request.POST['degre']
         add=request.POST['add']
         Admission.objects.filter(logid=updating).update(email=mail,candidatename=cname,parentname=pname,
         phonenumber=num,category=categ,application=subject,sslcmark=slcmark,plus2mark=plmark,
@@ -214,8 +370,14 @@ def updateug(request):  #updating ug student themselves
         subject=request.POST['sub']
         slcmark=request.POST['ssperc']
         plmark=request.POST['plperc']
-        slc=request.FILES['sslc']# also error in these two file fields
-        plus2=request.FILES['plus']
+        if 'sslc' in request.FILES:
+            slc=request.FILES['sslc']
+        else:
+            slc=request.POST['sslc']
+        if 'plus' in request.FILES:
+            plus2=request.FILES['plus']
+        else:
+            plus2=request.POST['plus']
         add=request.POST['add']
         print(slc)
         Degree.objects.filter(logid=updating).update(email=mail,candidatename=cname,parentname=pname,
@@ -226,8 +388,9 @@ def updateug(request):  #updating ug student themselves
     else:
         student=Degree.objects.get(logid=updating)
         return render(request,'ugstudprofile.html',{'ugdata':student})
-def delevent(request):
-    pass#for deleting an event  
+def delevent(request,evtid):#for deleting an event
+    Event.objects.get(id=evtid).delete()
+    return redirect('about')
 def computerscience(request):
     return render(request,'computerscience.html')
 def bsccs(request):
@@ -286,42 +449,86 @@ def editing(request):
     admin=request.session['aid']
     if request.method=='POST':
         try:
-            mnth=request.POST['month']
             day=request.POST['day']
             evnt=request.POST['event']
-            evnts=Event(month=mnth,day=day,event=evnt,loginid_id=admin)
+            evnts=Event(day=day,event=evnt,loginid_id=admin)
             evnts.save()
             return render(request,'editing.html',{'mesg':'Succes'})
         except Exception as error:
             return render(request,'editing.html',{'mesg':error})
     return render(request,'editing.html')
-def addcontact(request):
-    admin=request.session['aid']
-    if request.method=='POST':
-        try:
-            adrs=request.POST['addrs']
-            mail=request.POST['mail']
-            office=request.POST['office']
-            direct=request.POST['director']
-            cont=ContactDetails(address=adrs,email=mail,firstnum=office,secnum=direct,loginid_id=admin)
-            cont.save()
-            return render(request,'addcontact.html',{'mesg':'Success'})
-        except Exception as error:
-            return render(request,'addcontact.html',{'mesg':error})
-    return render(request,'addcontact.html')
-def addteacher(request):
-    admin=request.session['aid']
-    if request.method=='POST':
-        try:
-            child=request.POST['stud']
-            teach=request.POST['teacher']
-            course=request.POST['course']
-            teachr=Count(student=child,teacher=teach,course=course,loginid_id=admin)
-            teachr.save()
-            return render(request,'teachers.html',{'mesg':'Succesful'})
-        except Exception as error:
-            return render(request,'teachers.html',{'mesg':error})
-    return render(request,'teachers.html')
+
 def studentwelcome(request):
-    return render(request,'studentwelcome.html')
+    swelcome=request.session['sid']
+    
+    return render(request,'studentwelcome.html',{'stwelcome':swelcome})
+def addedimage(request):
+    pics=Image.objects.all()
+    return render(request,'addedimage.html',{'allimg':pics})
+def delimage(request,pcid):
+    Image.objects.filter(id=pcid).delete()
+    return redirect('addedimage')
+def ugacademic(request): #displaying ug details 
+    alldata=UgAcademics.objects.all()
+    return render(request,'ugacademic.html',{'uginfo':alldata})
+def pgacademic(request): #displaying pg details
+    alldata=PgAcademics.objects.all()
+    return render(request,'pgacademic.html',{'pginfo':alldata})
+def ugfees(request): #adding ug details
+    newdata=request.session['aid']
+    if request.method=='POST':
+        try:
+            usub=request.POST['ucrse']
+            umoney=request.POST['ufees']
+            uqual=request.POST['ueligibility']
+            ujobs=request.POST['ujob']
+            ugacd=UgAcademics(subjects=usub,fees=umoney,eligibility=uqual,job=ujobs,loginid_id=newdata)
+            ugacd.save()
+            return render(request,'ugfees.html',{'msg':'Succesfully added'})
+        except Exception as error:
+            return render(request,'ugfees.html',{'msg':error})
+    return render(request,'ugfees.html')
+def pgfees(request): #adding pg details
+    newdata=request.session['aid']
+    if request.method=='POST':
+        try:
+            psub=request.POST['pcrse']
+            pmoney=request.POST['pfees']
+            pqual=request.POST['peligibility']
+            pjobs=request.POST['pjob']
+            pgacd=PgAcademics(subjects=psub,fees=pmoney,eligibility=pqual,job=pjobs,loginid_id=newdata)
+            pgacd.save()
+            return render(request,'pgfees.html',{'msg':'Succesfully added'})
+        except Exception as error:
+            return render(request,'pgfees.html',{'msg':error})
+    return render(request,'pgfees.html')
+def delugfees(request,ufid):
+    UgAcademics.objects.filter(id=ufid).delete()
+    return redirect('ugacademic')
+def delpgfees(request,pfid):
+    PgAcademics.objects.filter(id=pfid).delete()
+    return redirect('pgacademic')
+def editugfees(request,eufid):
+    oldug=UgAcademics.objects.get(id=eufid)
+    if request.method=='POST':
+        usubj=request.POST['subj']
+        ufee=request.POST['fee']
+        uelig=request.POST['qual']
+        ujob=request.POST['pjob'] 
+        newug=UgAcademics.objects.filter(id=eufid).update(subjects=usubj,fees=ufee,eligibility=uelig,job=ujob)
+        return render(request,'editugfees.html',{'pginfo':newug})
+    return render(request,'editugfees.html',{'pginfo':oldug})
+     
+def editpgfees(request,epfid):
+    oldpg=PgAcademics.objects.get(id=epfid)
+    if request.method=='POST':
+        psubj=request.POST['subj']
+        pfee=request.POST['fee']
+        pelig=request.POST['qual']
+        pjob=request.POST['pjob']
+        newpg=PgAcademics.objects.filter(id=epfid).update(subjects=psubj,fees=pfee,eligibility=pelig,job=pjob)
+        return render(request,'editpgfees.html',{'pginfo':newpg,'msg':'Updated Succesfully'})
+    return render(request,'editpgfees.html',{'pginfo':oldpg})
+
+
 

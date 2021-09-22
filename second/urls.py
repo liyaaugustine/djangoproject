@@ -1,15 +1,20 @@
 from django.urls import path
+from django.conf.urls import url
 from . import views  
 urlpatterns = [
     path('new', views.new),
     path('home',views.home, name='home'),
-    path('addteacher',views.addteacher, name='addteacher'),
+    path('upcount',views.upcount, name='upcount'),
+    path('displaycount',views.displaycount, name='displaycount'),
     path('contact',views.contact,name='contact'),
-    path('addcontact',views.addcontact,name='addcontact'),
+    path('editcontact',views.editcontact, name='editcontact'),
+    path('showcontact',views.showcontact,name='showcontact'),
     path('messages',views.messages,name="messages"),
     path('images', views.images, name='images'),
     path('img', views.img, name='img'),
     path('about', views.about, name='about'),
+    path('upmonth',views.upmonth, name='upmonth'),
+    path('showmonth',views.showmonth,name='showmonth'),
     path('achevments', views.achevments, name='achevments'),
     path('milestones', views.milestones, name='milestones'),
     path('activity', views.activity, name='activity'),
@@ -23,7 +28,7 @@ urlpatterns = [
     path('admission', views.admission, name='admission'),
     path('admson',views.admson,name='admson'),
     path('editing',views.editing,name='editing'),
-    path('delevent',views.delevent, name='delevent'),
+    path('delevent/<int:evtid>',views.delevent, name='delevent'),
     path('details/<int:reqid>',views.details,name='details'),
     path('delete/<int:delid>',views.delete,name='delete'),
     path('ugdetails/<int:ugid>',views.ugdetails,name='ugdetails'),
@@ -59,9 +64,24 @@ urlpatterns = [
     path('ugsuccess',views.ugsuccess, name='ugsuccess'),
     path('updateug',views.updateug, name='updateug'),
     path('studentwelcome',views.studentwelcome, name='studentwelcome'),
-    path('studlogout', views.studlogout, name='studlogout')
-
-
+    path('studlogout', views.studlogout, name='studlogout'),
+    path('addedimage',views.addedimage, name='addedimage'),
+    path('delimage/<int:pcid>',views.delimage, name='delimage'),
+    path('augmail/<int:amid>',views.augmail, name='augmail'),
+    path('rugmail/<int:rmid>',views.rugmail, name='rugmail'),
+    path('apgmail/<int:apid>',views.apgmail, name='apgmail'),
+    path('rpgmail/<int:rpid>',views.rpgmail, name='rpgmail'),
+    path('replymsg/<int:rplid>',views.replymsg, name='replymsg'),
+    path('ugacademic',views.ugacademic, name='ugacademic'),
+    path('pgacademic',views.pgacademic, name='pgacademic'),
+    path('ugfees',views.ugfees, name='ugfees'),
+    path('pgfees',views.pgfees, name='pgfees'),
+    path('delugfees/<int:ufid>',views.delugfees, name='delugfees'),
+    path('delpgfees/<int:pfid>',views.delpgfees, name='delpgfees'),
+    path('editugfees/<int:eufid>', views.editugfees, name='editugfees'),
+    path('editpgfees/<int:epfid>', views.editpgfees, name='editpgfees'),
 ]
+
+    
 
 

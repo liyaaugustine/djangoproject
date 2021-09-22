@@ -1,5 +1,6 @@
 
-from django.urls import path
+from django.urls import path,include
+from django.conf.urls import url
 from . import views
 urlpatterns = [
     path('',views.index),
@@ -26,4 +27,14 @@ urlpatterns = [
     path('delete/<int:delid>',views.delete,name='delete'),
     path('deleteacc',views.deleteacc,name='deleteacc'),
     path('uparticle/<int:itmid>',views.uparticle,name='uparticle'),
+    path('ajaxmthd',views.ajaxmthd, name='ajaxmthd'),
+    path('myform',views.myform, name='myform'),
+    path('display',views.display, name='display'),
+    path('datadel',views.datadel, name='datadel'),
+    path('dataedit',views.dataedit, name='dataedit'),
+    path('updtdata',views.updtdata, name='updtdata'),
+    #path('selectdata',views.selectdata, name='selectdata'),
+    #path('selectdata/<int:id>',views.selectdata, name='selectdata'),
+    url(r'^selectdata/$',views.selectdata),
+    url(r'^selectdata/([0-9]+)$',views.selectdata),
 ]

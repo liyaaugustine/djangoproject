@@ -1,0 +1,56 @@
+{%block content%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <style>
+        body{
+        background-image: url("{% static 'images/s5.jpg' %}");  
+        background-size: cover; 
+        }
+    .black{
+        background: white;
+        background: rgba(125, 0, 0, 0.5); /* Black see-through  */
+    }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-2 col-md-1 col-sm-1"></div>
+            <div class="col-lg-7 col-md-8 col-sm-8 mt-5 black">
+                <form action="{{pginfo.id }}" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Course</label>
+                        <input type="text"  name="subj" class="form-control" value="{{pginfo.subjects}}">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fees</label>
+                        <input type="text"  name="fee" class="form-control" value="{{pginfo.fees}}">
+                    </div>         
+                        
+                    <div class="form-group">
+                        <label>Eligibility</label>
+                        <input type="text"  name="qual" class="form-control"  value="{{pginfo.eligibility}}">
+                    </div>    
+
+                    <div class="form-group">
+                        <label>Job Profiles</label>
+                        <input type="text"  name="pjob" class="form-control" value="{{pginfo.job}}">
+                    </div> {{msg}}
+                    <button class="btn btn-primary  btn-block" type="submit">Save</button><br>
+                </form>             
+            </div>      
+        </div>
+    </div>
+              
+    {% endblock %}  
+</body>
+</html>

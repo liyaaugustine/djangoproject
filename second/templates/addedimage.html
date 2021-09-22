@@ -1,0 +1,29 @@
+{% extends 'sidenavadmin.html'%} 
+{%block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Added images</title>
+</head>
+<body>
+
+    <center><h1>List of Added Images</h1></center>
+
+    <div class="container-fluid">
+        <div class="row">
+            {% for itm in  allimg %}
+
+            <div style="width:320px; margin:10px;">
+                <img src="{{itm.images.url}}" width="300px" height="300px">
+                <a class="btn btn-warning btn-block" style="width: 300px;" href="delimage/{{itm.id}}">Delete</a>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

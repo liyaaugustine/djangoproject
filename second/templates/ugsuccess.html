@@ -1,3 +1,6 @@
+{% extends 'sidenavstud.html'%} 
+{%block content%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>complted</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<style>
+    .pic{
+        background-image: url("{% static 'images/s4.jpg' %}");  
+        background-size: cover; 
+        height: 600px;
+    }
+    .black{
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.5); /* Black see-through  */
+        width: 60%;
+        color: white;
+    }
+</style>
 </head>
 <body>
     
-    <center><h2 class="m-5">Successfully Submitted Your Application!!!</h2></center>
-    <center><a href="ugstudprofile" class="m-5 btn btn-info">View Details</a></center>
+    <div class="container-fluid pic">
+        <div class="row">
+                <div class=" col-lg-3 col-md-4 col-sm-2"></div>
+                <div class="black mb-5 mt-5">
+                    <center><h2 class="m-5">Successfully Submitted Your Application!!!</h2></center>
+                    <center><a href="ugstudprofile" class="m-5 btn btn-info">View Details</a></center>
+                </div>
+        </div>
+    </div>
+    
+    {% endblock %}
 </body>
 </html>

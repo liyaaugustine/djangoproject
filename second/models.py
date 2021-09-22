@@ -62,20 +62,18 @@ class Degree(models.Model):
     plus2=models.FileField(upload_to='certificates/')
     qualification=models.CharField(max_length=100)
     logid=models.ForeignKey(StudentLogin,on_delete=models.CASCADE)
-class Message(models.Model):
-    studentname=models.CharField(max_length=50)
-    mail=models.EmailField(max_length=100)
-    contact=models.BigIntegerField()
-    message=models.TextField()  
+
 class Count(models.Model):
     student=models.CharField(max_length=20)
     teacher=models.CharField(max_length=20)
     course=models.CharField(max_length=20)
     loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
 class Event(models.Model):
-    month=models.CharField(max_length=10)#make this as a single table 
     day=models.CharField(max_length=15)
     event=models.CharField(max_length=30)
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+class Month(models.Model):
+    month=models.CharField(max_length=10)
     loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
 class ContactDetails(models.Model):
     address=models.TextField()
@@ -86,6 +84,29 @@ class ContactDetails(models.Model):
 class Image(models.Model):
     images=models.FileField(upload_to='certificates/')
     loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+    
+class Message(models.Model):
+    studentname=models.CharField(max_length=50)
+    mail=models.EmailField(max_length=100)
+    contact=models.BigIntegerField()
+    message=models.TextField() 
+    status=models.CharField(max_length=20,default='active') 
+class Reply(models.Model):
+    reply=models.TextField()
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+    mesageid=models.ForeignKey(Message,on_delete=models.CASCADE)
+class UgAcademics(models.Model):
+    subjects=models.CharField(max_length=30)
+    fees=models.CharField(max_length=30)
+    eligibility=models.CharField(max_length=30)
+    job=models.TextField()
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE)
+class PgAcademics(models.Model):
+    subjects=models.CharField(max_length=30)
+    fees=models.CharField(max_length=30)
+    eligibility=models.CharField(max_length=30)
+    job=models.TextField()
+    loginid=models.ForeignKey(MyLogin,on_delete=models.CASCADE) 
 
 
 

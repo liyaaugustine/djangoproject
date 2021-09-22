@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'second',
+    'rest_framework',
     
 ]
 
@@ -82,7 +83,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME':'mycollege',
+        'NAME':'collegesite',
         'USER':'postgres',
         'PASSWORD':'liya@4321',
         'HOST': '127.0.0.1',
@@ -138,8 +139,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.gmail.com'
 EMAIL_PORT='587'
-#EMAIL_HOST_USER='liyaaugustinek@gmail.com'
-#EMAIL_HOST_PASSWORD='a'
+EMAIL_HOST_USER='liyaaugustinek@gmail.com'
+EMAIL_HOST_PASSWORD='an'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
 # Default primary key field type

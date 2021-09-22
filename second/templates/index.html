@@ -15,6 +15,18 @@
     background-image: linear-gradient( white, aquamarine);
     font-size: 60px;
     }
+    .myfoot{
+        background: white;
+        background: rgba(0, 0, 0, 0.5); 
+    }
+    .footer{
+        position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: white;
+   text-align: center;
+    }
 </style>
 </head>
 <body>
@@ -53,8 +65,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Academics</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">UG Courses</a>
-                        <a class="dropdown-item" href="#">PG Courses</a>
+                        <a class="dropdown-item" href="ugacademic">UG Courses</a>
+                        <a class="dropdown-item" href="pgacademic">PG Courses</a>
                     </div>
                 </li>  
             
@@ -79,24 +91,31 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">More</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="studlogin">Student Login</a>
-                        <a class="dropdown-item" href="studlogout">Student Logout</a>
+                        <a class="dropdown-item bg-info" href="studlogin">Student Login</a>
+                        <a class="dropdown-item bg-success" href="login">Admin Login</a>
                     </div>
                 </li>
             </ul>
         </div>
+        {% if 'sid' in request.session %}
+        <a href="studentwelcome" class="btn btn-info ml-auto mr-5" >Your Details</a>
+        {% endif %}
 
         {% if 'aid' in request.session %}
         <a href="admin" class="btn btn-info ml-auto mr-5" >Admin Page</a>
-        
-        {% else %}
-
-        <button type="submit" class="btn btn-warning ml-auto"><a href="login">Login</a>
-        </button>
         {% endif %}
+       
         <!--login button for admin-->
     </nav>
       {% block content%}
-       {% endblock  %}
+       {% endblock  %} 
+       <br>
+       <!--footers-->
+       <div class="container-fluid  mt-5">
+           <footer class="footer p-4 myfoot" style="position: fixed;">
+                <b style="color: whitesmoke;">Email ID:thomas@gmail.com</b>
+            </footer>
+       </div>
+       
 </body>
 </html>

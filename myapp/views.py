@@ -3,7 +3,10 @@ from django.http import HttpResponse,JsonResponse
 from . models import *  
 from datetime import datetime
 from django.core.mail import send_mail
-from random import randint
+from random import randint 
+from myapp.serializers import Userserializer
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
 # Create your views here.
 def index(request):
     return  HttpResponse('hai hellow')
@@ -84,24 +87,22 @@ def foreign(request):
                 print(pics,'------------------')
                 pictures=Profilepic(profilepic=pics,loginid=details)
                 pictures.save()
-            
             details2=UserDetails(firstname=fname,lastname=lname,date=date,place=place,parentname=pname,phone=mobile,loginid=details)
             details2.save()
-        
             request.session['id']=details.id
             #return render(request,'foreign.html',{'message':'succesfully'})
-            #id=request.session['id']#for email just
-            #foremail=Login.objects.get(id=id)
-            #for sending mail
+            nid=request.session['id']
+            foremail=Login.objects.get(id=nid)
+            #sending mail
             #otp=randint(1000, 9999)
-            #send_mail (
-                #'OTP for creating account',
+            send_mail (
+                'OTP for creating account',
                 #str(otp),
-                #'liyaaugustinek@gmail.com',
-                #[foremail.Username],
-                #fail_silently=False,
-            #)
-
+                'your application is selected',
+                'liyaaugustinek@gmail.com',
+                [foremail.Username],
+                fail_silently=False,
+                )
             return redirect('home2')
         except Exception as error:
              return render(request,'foreign.html',{'message':error})
@@ -165,6 +166,8 @@ def upvprofile(request):
         mobile=request.POST['phone']  
         #if 'dppic' in request.FILES:
             #imgs=request.FILES['dppic']
+        #else:
+            #imgs=request.POST['dppic']
             #print('image checking --------------------------------------')
             #pict=Profilepic.objects.filter(loginid=updation).update(profilepic=imgs)
        #else:
@@ -208,13 +211,78 @@ def delete(request,delid): #admin deleting
     print(logid)
     dellog=Login.objects.filter(id=logid).delete()
     deluser=UserDetails.objects.filter(id=delid).delete()
-    
     return redirect('foreign')
 def deleteacc(request):
     acc=request.session['id']
     UserDetails.objects.filter(loginid=acc).delete()
     Login.objects.filter(id=acc).delete()
     return redirect('foreign')
+
+    #using ajax methods from here
+def ajaxmthd(request):
+    return render(request,'ajaxmthd.html')
+def myform(request):
+    print('-----------------------')
+    nme=request.POST['name']
+    number=request.POST['num']
+    plce=request.POST['plc']
+    details=AjaxUdetails(name=nme,contact=number,place=plce)
+    details.save()
+    return JsonResponse({'mesg':'Data Inserted'})
+def display(request):
+    info=AjaxUdetails.objects.all()
+    datas=[{'id':item.id,'name':item.name,'phone':item.contact,'plc':item.place}for item in info]
+    return JsonResponse({'mydata':datas})
+def datadel(request):
+    deleteinfo=request.POST['dlt']
+    AjaxUdetails.objects.get(id=deleteinfo).delete()
+    return JsonResponse({'mesg':'Data Deleted'})
+def dataedit(request):
+    editsingle=request.POST['editing']
+    editshow=AjaxUdetails.objects.get(id=editsingle)
+    olddata=[{'oid':editshow.id,'oname':editshow.name,'ophone':editshow.contact,'oplace':editshow.place}]
+    return JsonResponse({'showdata':olddata})
+def updtdata(request):
+    newdatas=request.POST['newdata']
+    upname=request.POST['uname']
+    upnum=request.POST['unum']
+    upplc=request.POST['uplc']
+    newinfo=AjaxUdetails.objects.filter(id=newdatas).update(name=upname,contact=upnum,place=upplc)
+    return JsonResponse({'newdetails':'Data Updated'})
+@csrf_exempt
+def selectdata(request,id=0):
+    if request.method=='GET':
+        seldata=AjaxUdetails.objects.all()
+        serobj=Userserializer(seldata,many=True)
+        return JsonResponse(serobj.data,safe=False)
+    elif request.method=='POST':
+        udata=JSONParser().parse(request)
+        serlzdata=Userserializer(data=udata)
+        if serlzdata.is_valid():
+            serlzdata.save()
+            return JsonResponse('Data inserted succefully',safe=False)
+        return JsonResponse('An error occuerd',safe=False)
+    elif request.method=='DELETE':
+        deldata=AjaxUdetails.objects.get(id=id)
+        deldata.delete()
+        print(id)
+        return JsonResponse('data deleted succesfully',safe=False)
+    elif request.method=='PUT':
+        userdata=JSONParser().parse(request)
+        userinfo=AjaxUdetails.objects.get(id=userdata['id'])
+        usrializer=Userserializer(userinfo,userdata)
+        if usrializer.is_valid():
+            userializer.save()
+            return JsonResponse('Data Updated Succefully',safe=False)
+        return JsonResponse('Failed to update',safe=False)
+
+
+
+
+
+
+
+
 
 
 

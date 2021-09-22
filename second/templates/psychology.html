@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psychology</title>
-    <script src="jquery-3.6.0.min.js"></script>
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <style>
@@ -53,10 +54,10 @@ body{
 </head>
 <body>
     <div class="container-fluid">
-        <div class="pic">
+        <div class="pic"  id="show">
                 <div class="text col-lg-12 col-md-12 col-sm-8" style="text-align: center;">
                    <center>
-                       <div class="psycho" id="show">
+                       <div class="psycho">
                             <i>DEPT OF PSYCHOLOGY</i>
                         </div>
                     
@@ -67,7 +68,7 @@ body{
                 </div>   
         </div>
     </div>
-
+    
     <p class="m-5">
         The department of Psychology were started in 2005 with B. Sc. Psychology course 20 students
         and 3 teachers. Dr. jacob Menon were the first Head of the Department of Psychology.
@@ -90,8 +91,8 @@ body{
     </p>
     <script>
         $(document).ready(function(){
-            $('#show').click(function(){
-                $('#wel').fadeToggle(2000)
+            $('#show').mouseenter(function(){
+                $('#wel').css("color", "red").slideUp(2000).slideDown(2000);
             })
         });
     </script>

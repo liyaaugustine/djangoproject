@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script><!--cdn of jquery-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     
     <link rel="stylesheet" href="{% static 'css/welcome.css' %}">
@@ -28,28 +29,27 @@ body{
     
 }
 </style>
-<body>
+<body onload="displaycontact()">
    
   
     <center><h1>CONTACT US</h1></center>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3 address">
-                <h2 class="m-5">Address:</h2><br>
-                <h5>{{details.address}} <br>
-                    Kozhikode - 673586 Kerala, India</h5>
+                <h2 class="m-5">Address:</h2>
+                <h5 id="tadrs"></h5>
+                    <h5>Kozhikode - 673586 Kerala, India</h5>
             </div>
             <div class="col-lg-3 address">
-                <h2 class="m-5">Email:</h2><br>
-                <h4>{{details.email}}</h4>
+                <h2 class="m-5">Email:</h2>
+                <h4  id="tmail"></h4>
             </div>
             <div class="col-lg-3 address">
-                <h2 class="m-5">Phone Number:</h2><br>  
-                <h5>
-                    0091-495-2 232 085,2 232 164 <br>
-                    Fax : 0091-495-2 233 174<br>
-                    Office Mobile : {{details.firstnum}}<br>
-                    Director : {{details.secnum}}</h5>
+                <h2 class="m-5">Phone Number:</h2>  
+               
+                    <h5>Fax : 0091-495-2 233 174</h5>
+                    <h5 id="tfirst">Office Mobile :</h5>
+                    <h5 id="tsec">Director :</h5>
             </div>
         </div>
         <!--editing button for admin-->
@@ -70,26 +70,29 @@ body{
                     <span>&times;</span>
                 </button>
             </div>
-            <form method="POST" action="" enctype="multipart/form-data">
+            <form method="POST" action="editcontact" enctype="multipart/form-data">
                 {% csrf_token %}
                 
             <div class="modal-body">
                 <div class="form-group">
                     <label>Change Address</label>
-                    <textarea name="addrs" placeholder="Address" class="form-control"></textarea>
+                    <textarea name="addrs" id="addrs" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Change Email</label>
-                    <input type="email" name="mail" class="form-control" value="" placeholder="Mail id">
+                    <input type="email" name="mail" id="mail" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Change PhoneNumber</label>
-                    <input type="number" name="num1" class="form-control" value="" placeholder="Office Number"><br>
-                    <input type="number" name="num2" class="form-control" value=""  placeholder="Dirctors Number">
+                    
+                    <label>Office Number</label>
+                    <input type="number" name="num1" id="num1" class="form-control"><br>
+
+                    <label>Dirctors Number</label>
+                    <input type="number" name="num2" id="num2" class="form-control" >
                 </div>
                 <br>
                     <button type="button"  class="btn btn-info" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-secondary ml-5">Add</button>
+                    <button type="submit" class="btn btn-secondary ml-5">Save</button>
                 </div>   
             </form><br>
         </div>
@@ -120,6 +123,31 @@ body{
     </div>
     {{msg}}
     <br><br><br>
+
+    <script>
+        $.ajaxSetup({
+            headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+        function displaycontact(){
+            $.ajax({
+                url:'showcontact',
+                type:'GET',
+                success:function(response){
+                    for(i=0;i<=response.mydata.length;i++){
+                        $('#tadrs').append('<input style="display:none" id="one" value="'+response.mydata[i].info+'">'+response.mydata[i].info+'</input>')
+                        $('#tmail').append('<input style="display:none" id="two"value="'+response.mydata[i].cmail+'">'+response.mydata[i].cmail+'</input>')
+                        $('#tfirst').append('<input style="display:none" id="three" value="'+response.mydata[i].ofice+'">'+response.mydata[i].ofice+'</input>')
+                        $('#tsec').append('<input style="display:none" id="four" value="'+response.mydata[i].direct+'">'+response.mydata[i].direct+'</input>')
+
+                        $('#addrs').val(document.getElementById('one').value)
+                        $('#mail').val(document.getElementById('two').value)
+                        $('#num1').val(document.getElementById('three').value)
+                        $('#num2').val(document.getElementById('four').value)
+                    }
+                }
+            })
+        }
+    </script>
 
     {% endblock %}
 </body>

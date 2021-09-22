@@ -76,9 +76,9 @@
          </tr>
          
     </table>
-    <div class="m-5 float-right">
-       <button class="btn btn-success ">Accept</button>  <!--if accept or reject means msgs need to sent to student-->
-       <button class="btn btn-danger ml-5">Reject</button>
+    <div class="m-5 float-right">{{msg}}
+       <a href="{%url 'augmail' ugstud.id %}" class="btn btn-success ">Accept</a>  <!--if accept or reject means msgs need to sent to student-->
+       <a href="{%url 'rugmail' ugstud.id %}" class="btn btn-danger ml-5">Reject</a>
     </div>
 </body>
 </html>
