@@ -169,9 +169,11 @@ def login(request):
                 request.session['aid']=admin.id
                 return redirect('admin')
             else:
-                admins=MyLogin(username=uname,password=apass)
-                admins.save()
+                admin=MyLogin(username=uname,password=apass)
+                admin.save()
+                request.session['aid']=admin.id
                 return redirect('admin')
+                
                 if MyLogin.objects.filter(username='liya@gmail.com',password='llllll'):
                     request.session['aid']=admin.id
                     return redirect('admin')
