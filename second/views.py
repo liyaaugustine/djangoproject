@@ -161,13 +161,20 @@ def mswsyllabus(request):
 def login(request):
     if request.method=='POST':
         try:
-            uname=request.POST['uname']#liya@gmail.com
-            apass=request.POST['pass']#llllll
-            admin=MyLogin.objects.get(username=uname,password=apass)
-            #admin=MyLogin(username=uname,password='pass') username and pswrd for admin inserted and set through sql.
-            #admin.save()
-            request.session['aid']=admin.id
-            return redirect('admin')
+            uname='liya@gmail.com'#request.POST['uname']
+            apass='llllll'#request.POST['pass']
+
+            if MyLogin.objects.filter(username='liya@gmail.com',password='llllll'):
+                admin=MyLogin.objects.get(username='liya@gmail.com',password='llllll')
+                request.session['aid']=admin.id
+                return redirect('admin')
+            else:
+                admins=MyLogin(username=uname,password=apass)
+                admins.save()
+                return redirect('admin')
+                if MyLogin.objects.filter(username='liya@gmail.com',password='llllll'):
+                    request.session['aid']=admin.id
+                    return redirect('admin')
         except Exception as err:
             return render(request,'login.html',{'message':err })
     return render(request,'login.html')
