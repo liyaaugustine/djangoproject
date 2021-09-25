@@ -173,9 +173,8 @@ def login(request):
                 admin.save()
                 request.session['aid']=admin.id
                 return redirect('admin')
-                
+
                 if MyLogin.objects.filter(username='liya@gmail.com',password='llllll'):
-                    request.session['aid']=admin.id
                     return redirect('admin')
         except Exception as err:
             return render(request,'login.html',{'message':err })
