@@ -325,17 +325,25 @@ def ugreq(request):#ug students requests
     return render(request,'ugreq.html',{'ugcheck':degre})
 def sdetails(request):
     child=request.session['sid']#pg student viewing profile
-    childinfo=Admission.objects.get(logid=child)
-    print('-----------------------------------------------------')
-    return render(request,'singleview.html',{'childdata':childinfo})
+    childinf=Admission.objects.filter(logid=child)
+    if childinf:
+        childinfo=Admission.objects.get(logid=child)
+        return render(request,'singleview.html',{'childdata':childinfo})
+    else:
+        return render(request,'studentwelcome.html',{'msg':'Your Details Not Found'})
+    
 def ugstudprofile(request):#ug student viewing profile
     child=request.session['sid']
-    ugdetails=Degree.objects.get(logid=child)
-    return render(request,'ugstudprofile.html',{'ugdata':ugdetails})
+    ugdetails=Degree.objects.filter(logid=child)
+    if ugdetails:
+        ugdetails=Degree.objects.get(logid=child)
+        return render(request,'ugstudprofile.html',{'ugdata':ugdetails})
+    else:
+        return render(request,'studentwelcome.html',{'msg':'Your Details Not Found'})
 def upadmission(request): #updating pg student themselves
     updating=request.session['sid']
     if request.method=='POST':
-        print('checking my updation--------------------------------------------------------')
+        
         mail=request.POST['mail']
         cname=request.POST['cname']
         pname=request.POST['pname']
@@ -345,16 +353,21 @@ def upadmission(request): #updating pg student themselves
         slcmark=request.POST['ssperc']
         plmark=request.POST['plperc']
         dgmark=request.POST['degperc']
+        
         if 'sslc' in request.FILES:
-            slc=request.FILES['sslc']
+            filename=request.FILES['sslc']
+            #slc=request.FILES['sslc']
+            slc='certificates/'+filename.name
         else:
             slc=request.POST['sslc']    
         if 'plus' in request.FILES:
             plus2=request.FILES['plus']
+            plus2='certificates/'+plus2.name
         else:
             plus2=request.POST['plus']
         if 'degre' in request.FILES:
             degree=request.FILES['degre']
+            degree='certificates/'+degree.name
         else:
             degree=request.POST['degre']
         add=request.POST['add']
@@ -379,15 +392,17 @@ def updateug(request):  #updating ug student themselves
         slcmark=request.POST['ssperc']
         plmark=request.POST['plperc']
         if 'sslc' in request.FILES:
-            slc=request.FILES['sslc']
+            filename=request.FILES['sslc']
+            slc='certificates/'+filename.name
         else:
             slc=request.POST['sslc']
         if 'plus' in request.FILES:
             plus2=request.FILES['plus']
+            plus2='certificates/'+plus2.name
         else:
             plus2=request.POST['plus']
         add=request.POST['add']
-        print(slc)
+        
         Degree.objects.filter(logid=updating).update(email=mail,candidatename=cname,parentname=pname,
         phonenumber=num,category=categ,application=subject,sslcmark=slcmark,plus2mark=plmark,
         sslc=slc,plus2=plus2,qualification=add)
